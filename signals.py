@@ -6,20 +6,20 @@ import numpy as np
 import random
 
 
-def random_1d_signal(n, l):
-    """Return a random 1d signal comprised of 'n' cosines of length 'l'
-    with amplitude between 1 and 10.
+def random_1d_signal(m, n):
+    """Return a random 1-dimensional signal comprised of 'n' cosines of
+    length 'm' with amplitude between 1 and 10.
     """
     amp = 10
-    s = random.randint(1, amp)*np.cos(np.linspace(0, 2*np.pi*random.randint(0, l), l))
+    s = random.randint(1, amp)*np.cos(np.linspace(0, 2*np.pi*random.randint(0, m), m))
     for _ in range(n - 1):
-        s = s + random.randint(1, amp)*np.cos(np.linspace(0, 2*np.pi*random.randint(0, l), l))
+        s = s + random.randint(1, amp)*np.cos(np.linspace(0, 2*np.pi*random.randint(0, m), m))
     return s
 
 
-def square_1d_signal(l):
-    """Return a square wave of overall length 'l'.
+def square_1d_signal(m):
+    """Return a 1-dimensional square wave of length 'm'.
     """
-    s = np.zeros(l)
-    s[int(l/4):int(3*l/4)] = 1
+    s = np.zeros(m)
+    s[int(m/4):int(3*m/4)] = 1
     return s
