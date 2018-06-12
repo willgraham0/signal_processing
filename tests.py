@@ -1,3 +1,7 @@
+"""This module contains unit tests to verify the behaviour of the
+signal processing functions."""
+
+
 import unittest
 import bases
 import numpy as np
