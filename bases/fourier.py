@@ -27,7 +27,8 @@ def dft2(image):
 
 def idft2(coefficients):
     """Return the 2-dimensional signal from its Fourier coefficients."""
-    pass
+    rows, cols = coefficients.shape
+    return idft_matrix(rows).dot(coefficients.dot(idft_matrix(cols)))
 
 
 def dft_matrix(M):
