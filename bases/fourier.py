@@ -18,11 +18,11 @@ def idft(coefficients):
     return idft_matrix(len(coefficients)).dot(coefficients)
 
 
-def dft2(image):
+def dft2(signal):
     """Return the Fourier coefficients of a 2-dimensional signal.
     """
-    rows, cols = image.shape
-    return dft_matrix(rows).dot(image.dot(dft_matrix(cols)))
+    rows, cols = signal.shape
+    return dft_matrix(rows).dot(signal.dot(dft_matrix(cols)))
 
 
 def idft2(coefficients):
@@ -31,19 +31,20 @@ def idft2(coefficients):
     return idft_matrix(rows).dot(coefficients.dot(idft_matrix(cols)))
 
 
-def dft_matrix(M):
-    """Return the discrete Fourier transform matrix. This matrix
-    multiplies a signal to obtain a vector of coefficients.
+def dft_matrix(m):
+    """Return the discrete Fourier transform matrix (m by m). This
+    matrix multiplies a signal to obtain a vector of coefficients.
     """    
-    k, j = np.meshgrid(np.arange(M), np.arange(M))
-    omega = np.exp(-2*np.pi*1j/M)
-    return np.power(omega, k*j)/np.sqrt(M)
+    k, j = np.meshgrid(np.arange(m), np.arange(m))
+    omega = np.exp(-2*np.pi*1j/m)
+    return np.power(omega, k*j)/np.sqrt(m)
 
 
-def idft_matrix(M):
-    """Return the inverse discrete Fourier transform matrix. This matrix
-    multiplies a vector of coefficients to construct a signal.
+def idft_matrix(m):
+    """Return the inverse discrete Fourier transform matrix (m by m).
+    This matrix multiplies a vector of coefficients to construct a
+    signal.
     """
-    k, j = np.meshgrid(np.arange(M), np.arange(M))
-    omega = np.exp(2*np.pi*1j/M)
-    return np.power(omega, k*j)/np.sqrt(M)
+    k, j = np.meshgrid(np.arange(m), np.arange(m))
+    omega = np.exp(2*np.pi*1j/m)
+    return np.power(omega, k*j)/np.sqrt(m)
