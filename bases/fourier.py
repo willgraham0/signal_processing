@@ -12,10 +12,24 @@ def dft(signal):
     return dft_matrix(len(signal)).dot(signal)
 
 
+def fft(signal):
+    """Return the Fourier coefficients of a 1-dimensional signal using
+    the Fast Fourier Transform algorithm.
+    TO BE IMPLEMENTED"""
+    pass
+
+
 def idft(coefficients):
     """Return the 1-dimensional signal from its Fourier coefficients.
     """
     return idft_matrix(len(coefficients)).dot(coefficients)
+
+
+def ifft(coefficients):
+    """Return the 1-dimensional signal from its Fourier coefficients
+    using the Fast Fourier Transform algorithm.
+    TO BE IMPLEMENTED"""
+    pass
 
 
 def dft2(signal):
@@ -32,7 +46,7 @@ def idft2(coefficients):
 
 
 def dft_matrix(m):
-    """Return the discrete Fourier transform matrix (m by m). This
+    """Return the Discrete Fourier Transform matrix (m by m). This
     matrix multiplies a signal to obtain a vector of coefficients.
     """    
     k, j = np.meshgrid(np.arange(m), np.arange(m))
@@ -41,7 +55,7 @@ def dft_matrix(m):
 
 
 def idft_matrix(m):
-    """Return the inverse discrete Fourier transform matrix (m by m).
+    """Return the inverse Discrete Fourier Transform matrix (m by m).
     This matrix multiplies a vector of coefficients to construct a
     signal.
     """
