@@ -14,9 +14,9 @@ class FourierTests(unittest.TestCase):
         """Test if the inverse of the Fourier matrix (real) is the same
         as the transpose of the Fourier matrix (real). This should be
         true for an orthogonal basis, which the Fourier basis is."""
-        dft_matrix = bases.fourier.dft_matrix(10)
-        idft_matrix = bases.fourier.idft_matrix(10)
-        np.testing.assert_almost_equal(dft_matrix.T.real, idft_matrix.real)
+        fourier_matrix = bases.fourier.fourier_matrix(10)
+        ifourier_matrix = bases.fourier.ifourier_matrix(10)
+        np.testing.assert_almost_equal(fourier_matrix.T.real, ifourier_matrix.real)
 
 
     def test_1d_signal_analysis_and_synthesis(self):
