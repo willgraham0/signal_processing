@@ -1,6 +1,7 @@
 """This module provides the functionality to transform 1-dimensional
 and 2-dimenional signals into the Fourier domain and back into the
-functional domain."""
+functional domain.
+"""
 
 
 import numpy as np
