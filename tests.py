@@ -129,11 +129,21 @@ class GeneralTests(unittest.TestCase):
     """Test cases for general functionality.
     """
 
-    def test_is_provisioned(self):
-        """Test that the boolean check for provided wavelet families.
+    def test_is_implemented(self):
+        """Test that the check for provided wavelet families.
         """
-        self.assertFalse(bases.wavelets.is_provisioned('Crazy'))
-        self.assertTrue(bases.wavelets.is_provisioned('Haar'))
+        self.assertTrue(bases.wavelets.is_implemented('Haar'))
+        self.assertFalse(bases.wavelets.is_implemented('Crazy'))
+
+    
+    def test_get_family(self):
+        """Test that the wavelet family object is returned else a
+        NotImplementedError.
+        """
+        self.assertEqual(bases.wavelets.get_family('Haar'),
+                         bases.wavelets.Haar)
+        with self.assertRaises(NotImplementedError):
+            bases.wavelets.get_family('Crazy')
 
 
 if __name__ == "__main__":

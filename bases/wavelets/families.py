@@ -9,12 +9,12 @@ class Wavelets(type):
     """A metaclass to encapsulate all the families of wavelets.
     """
     
-    families = []
+    families = {}
     def __init__(cls, name, bases, attrs):
         """Upon this metaclass being used, add the new class' name and
         the class itself to the metaclass variable 'families'.
         """
-        Wavelets.families.append((name, cls))
+        Wavelets.families[name] = cls
 
 
 class Haar(metaclass=Wavelets):
