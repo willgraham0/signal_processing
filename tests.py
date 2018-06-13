@@ -125,6 +125,16 @@ class HaarTests(unittest.TestCase):
         np.testing.assert_almost_equal(ihaar_matrix, np_ihaar_matrix)
 
 
+    # def test_1d_signal_analysis_and_synthesis(self):
+    #     """Test if a 1-dimensional signal (real) is synthesised back to
+    #     its original (real) after analysis (into Fourier domain).
+    #     """
+    #     original = signals.random_1d_signal(20, 5)
+    #     coeffs = bases.fourier.dft(original)
+    #     synthesised = bases.fourier.idft(coeffs)
+    #     np.testing.assert_almost_equal(original.real, synthesised.real)
+
+
 class GeneralTests(unittest.TestCase):
     """Test cases for general functionality.
     """

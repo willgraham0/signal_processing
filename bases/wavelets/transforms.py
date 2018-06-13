@@ -24,6 +24,9 @@ def get_family(family):
         raise NotImplementedError('{} family is not implemented.'.format(family))
 
 
-# def dwt(signal, family):
-#     if is_implemented(family):
+def dwt(signal, family):
+    """Return the Wavelet coefficients of a 1-dimensional signal.
+    """
+    Family = get_family(family)
+    return Family.imatrix(len(signal)).dot(signal)
         
