@@ -125,5 +125,16 @@ class HaarTests(unittest.TestCase):
         np.testing.assert_almost_equal(ihaar_matrix, np_ihaar_matrix)
 
 
+class GeneralTests(unittest.TestCase):
+    """Test cases for general functionality.
+    """
+
+    def test_is_provisioned(self):
+        """Test that the boolean check for provided wavelet families.
+        """
+        self.assertFalse(bases.wavelets.is_provisioned('Crazy'))
+        self.assertTrue(bases.wavelets.is_provisioned('Haar'))
+
+
 if __name__ == "__main__":
     unittest.main()
