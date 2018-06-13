@@ -1,6 +1,5 @@
-"""This module provides the functionality to transform 1-dimensional
-and 2-dimenional signals into the wavelet domain and back into the
-functional domain.
+"""This module provides the definitions of the different families of
+wavelets.
 """
 
 import numpy as np
