@@ -18,4 +18,4 @@ def haar_matrix(m):
 def square(k, m):
     x = np.sin(np.linspace(0, 2*np.pi, k))
     s = np.piecewise(x, [x < 0, x >= 0], [-1, 1])
-    return np.append(s, np.zeros(m-k))
+    return np.append(s, np.zeros(m - k))
