@@ -1,1 +1,2 @@
-from . import fourier 
+from . import fourier
+from . import wavelets
