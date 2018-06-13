@@ -46,7 +46,7 @@ class HaarTests(unittest.TestCase):
     """Test cases for the Haar basis.
     """
 
-    def test_haar_wavelet_length_error(self):
+    def test_wavelet_length_error(self):
         """Test if ValueError is raised if the wavelet length is greater
         than the signal length.
         """
@@ -54,7 +54,7 @@ class HaarTests(unittest.TestCase):
             bases.wavelets.haar.haar_wavelet(8, 6)
 
 
-    def test_haar_wavelet_log2_values(self):
+    def test_wavelet_log2_values(self):
         """Test if ValueError is raised if the base 2 logarithms of the
         wavelet length or signal length is not an integer.
         """
@@ -64,51 +64,65 @@ class HaarTests(unittest.TestCase):
             bases.wavelets.haar.haar_wavelet(3, 8)
 
         
-    def test_haar_wavelets(self):
+    def test_wavelets(self):
         """Test the Haar wavelets for a range of wavelet lengths and
         signal lengths.
         """
         np.testing.assert_equal(
             bases.wavelets.haar.haar_wavelet(2, 2),
-            np.array([ 1, -1])
+            (1/np.sqrt(2))*np.array([ 1, -1])
+        )
+        np.testing.assert_equal(
+            bases.wavelets.haar.haar_wavelet(1, 4),
+            (1/np.sqrt(4))*np.array([ 1,  1,  1,  1])
         )
         np.testing.assert_equal(
             bases.wavelets.haar.haar_wavelet(2, 4),
-            np.array([ 1, -1,  0,  0])
+            (1/np.sqrt(2))*np.array([ 1, -1,  0,  0])
         )
         np.testing.assert_equal(
             bases.wavelets.haar.haar_wavelet(4, 4),
-            np.array([ 1,  1, -1, -1])
+            (1/np.sqrt(4))*np.array([ 1,  1, -1, -1])
         )
         np.testing.assert_equal(
             bases.wavelets.haar.haar_wavelet(2, 8),
-            np.array([ 1, -1,  0,  0,  0,  0,  0,  0])
+            (1/np.sqrt(2))*np.array([ 1, -1,  0,  0,  0,  0,  0,  0])
         )
         np.testing.assert_equal(
             bases.wavelets.haar.haar_wavelet(4, 8),
-            np.array([ 1,  1, -1, -1,  0,  0,  0,  0])
+            (1/np.sqrt(4))*np.array([ 1,  1, -1, -1,  0,  0,  0,  0])
         )
         np.testing.assert_equal(
             bases.wavelets.haar.haar_wavelet(8, 8),
-            np.array([ 1,  1,  1,  1, -1, -1, -1, -1])
+            (1/np.sqrt(8))*np.array([ 1,  1,  1,  1, -1, -1, -1, -1])
         )
 
     
-    def test_haar_matrix(self):
+    def test_matrix(self):
         """Test that the Haar matrix is correctly produced for different
         dimensions."""
         np.testing.assert_equal(
             bases.wavelets.haar.haar_matrix(2),
-            np.array([[ 1,  1],
-                      [ 1, -1]])
+            (1/np.sqrt(2))*np.array([[ 1,  1],
+                                     [ 1, -1]])
         )
         np.testing.assert_equal(
             bases.wavelets.haar.haar_matrix(4),
-            np.array([[ 1,  1,  1,  0],
-                      [ 1,  1, -1,  0],
-                      [ 1, -1,  0,  1],
-                      [ 1, -1,  0, -1]])
+            np.array([[ 1/np.sqrt(4),  1/np.sqrt(4),  1/np.sqrt(2),  0],
+                      [ 1/np.sqrt(4),  1/np.sqrt(4), -1/np.sqrt(2),  0],
+                      [ 1/np.sqrt(4), -1/np.sqrt(4),  0,  1/np.sqrt(2)],
+                      [ 1/np.sqrt(4), -1/np.sqrt(4),  0, -1/np.sqrt(2)]])
         )
+
+
+    def test_inverse_is_inverse(self):
+        """Test if the inverse of the Haar matrix is the same as the
+        numpy.linalg.inv of the Haar matrix.
+        """
+        haar_matrix = bases.wavelets.haar.haar_matrix(16)
+        ihaar_matrix = bases.wavelets.haar.ihaar_matrix(16)
+        np_ihaar_matrix = np.linalg.inv(haar_matrix)
+        np.testing.assert_almost_equal(ihaar_matrix, np_ihaar_matrix)
 
 
 if __name__ == "__main__":
