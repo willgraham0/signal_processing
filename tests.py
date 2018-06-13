@@ -93,6 +93,23 @@ class HaarTests(unittest.TestCase):
             np.array([ 1,  1,  1,  1, -1, -1, -1, -1])
         )
 
+    
+    def test_haar_matrix(self):
+        """Test that the Haar matrix is correctly produced for different
+        dimensions."""
+        np.testing.assert_equal(
+            bases.wavelets.haar.haar_matrix(2),
+            np.array([[ 1,  1],
+                      [ 1, -1]])
+        )
+        np.testing.assert_equal(
+            bases.wavelets.haar.haar_matrix(4),
+            np.array([[ 1,  1,  1,  0],
+                      [ 1,  1, -1,  0],
+                      [ 1, -1,  0,  1],
+                      [ 1, -1,  0, -1]])
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
