@@ -1,3 +1,4 @@
+untracked/*
 __pycache__/*
 sp/__pycache__/*
 sp/bases/__pycache__/*

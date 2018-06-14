@@ -2,6 +2,7 @@
 transformations into other bases."""
 
 
+import numpy as np
 import matplotlib.pyplot as plt
 
 
