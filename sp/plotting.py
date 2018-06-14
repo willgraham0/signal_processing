@@ -41,6 +41,9 @@ def plot(signal):
     fig = plt.figure()
     dimensions = len(signal.shape)
     ax = fig.add_subplot(1, 1, 1)
+    ax.set_xlabel('Dimension')
+    ax.set_ylabel('Amplitude')
+    ax.grid(True)
     while True:
         if len(signal.shape) == dimensions:
             if signal.dtype == np.complex128:
