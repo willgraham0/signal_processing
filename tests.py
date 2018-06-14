@@ -125,14 +125,24 @@ class HaarTests(unittest.TestCase):
         np.testing.assert_almost_equal(ihaar_matrix, np_ihaar_matrix)
 
 
-    # def test_1d_signal_analysis_and_synthesis(self):
-    #     """Test if a 1-dimensional signal (real) is synthesised back to
-    #     its original (real) after analysis (into Fourier domain).
-    #     """
-    #     original = signals.random_1d_signal(20, 5)
-    #     coeffs = bases.fourier.dft(original)
-    #     synthesised = bases.fourier.idft(coeffs)
-    #     np.testing.assert_almost_equal(original.real, synthesised.real)
+    def test_1d_signal_invalid_length(self):
+        """Test if a ValueError exception is raised is the signal length
+        log2(m) is not an integer for the Haar discrete wavelet
+        transform. 
+        """
+        original = signals.random_1d_signal(17, 5)
+        with self.assertRaises(ValueError):
+            coeffs = bases.wavelets.dwt(original, 'Haar')
+
+
+    def test_1d_signal_analysis_and_synthesis(self):
+        """Test if a 1-dimensional signal (real) is synthesised back to
+        its original (real) after analysis (into Haar domain).
+        """
+        original = signals.random_1d_signal(16, 5)
+        coeffs = bases.wavelets.dwt(original, 'Haar')
+        synthesised = bases.wavelets.idwt(coeffs, 'Haar')
+        np.testing.assert_almost_equal(original.real, synthesised.real)
 
 
 class GeneralTests(unittest.TestCase):
