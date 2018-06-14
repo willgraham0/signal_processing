@@ -69,3 +69,19 @@ class Haar(metaclass=Wavelets):
         coefficients a signal.
         """
         return Haar.matrix(m).T
+
+
+    @staticmethod
+    def compress(matrix):
+        """Return a compressed version of the wavelet imatrix (so that
+        the number of columns equals the number of dilations of the Haar
+        wavelet)."""
+        vectors = []
+        length = len(matrix)
+        accum = np.zeros(length)
+        for i in range(length):
+            accum = accum + matrix[:,i]
+            if np.log2(i+1).is_integer():
+                vectors.append(accum)
+                accum = np.zeros(length)
+        return np.column_stack(vectors)

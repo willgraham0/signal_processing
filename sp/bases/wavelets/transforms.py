@@ -4,6 +4,7 @@ functional domain.
 """
 
 from .families import Wavelets, Haar
+import numpy as np
 
 
 def is_implemented(family):
@@ -36,3 +37,18 @@ def idwt(coefficients, family):
     """
     Family = get_family(family)
     return Family.matrix(len(coefficients)).dot(coefficients)
+
+
+def heatmap_matrix(signal, family):
+    """Return a 2-dimensional array of the wavelet matrix, with each
+    wavelet scaled by its corresponding coefficient (its amplitude) and
+    compressed (so that the number of columns equals the number of
+    dilations) for a 1-dimensional signal."""
+    Family = get_family(family)
+    wavelet_matrix = Family.matrix(len(signal))
+    coefficients = dwt(signal, family)
+    pre_compress = np.multiply(wavelet_matrix, coefficients)
+    return Family.compress(pre_compress)
+
+
+
