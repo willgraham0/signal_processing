@@ -3,9 +3,8 @@ signal processing functions.
 """
 
 import unittest
-import bases
+from sp import bases, signals
 import numpy as np
-import signals
 
 
 class FourierTests(unittest.TestCase):
