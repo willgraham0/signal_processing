@@ -107,10 +107,14 @@ class HaarTests(unittest.TestCase):
         )
         np.testing.assert_equal(
             bases.wavelets.Haar.matrix(4),
-            np.array([[ 1/np.sqrt(4),  1/np.sqrt(4),  1/np.sqrt(2),  0],
-                      [ 1/np.sqrt(4),  1/np.sqrt(4), -1/np.sqrt(2),  0],
-                      [ 1/np.sqrt(4), -1/np.sqrt(4),  0,  1/np.sqrt(2)],
-                      [ 1/np.sqrt(4), -1/np.sqrt(4),  0, -1/np.sqrt(2)]])
+            np.multiply(np.array([[ 1,  1,  1,  0],
+                                  [ 1,  1, -1,  0],
+                                  [ 1, -1,  0,  1],
+                                  [ 1, -1,  0, -1]]),
+                        np.array([1/np.sqrt(4),
+                                  1/np.sqrt(4),
+                                  1/np.sqrt(2),
+                                  1/np.sqrt(2)]))
         )
 
 
@@ -142,6 +146,27 @@ class HaarTests(unittest.TestCase):
         coeffs = bases.wavelets.dwt(original, 'Haar')
         synthesised = bases.wavelets.idwt(coeffs, 'Haar')
         np.testing.assert_almost_equal(original.real, synthesised.real)
+
+
+    def test_compress(self):
+        """Test the compression of a Haar wavelet matrix into one with
+        no zeros.
+        """
+        haar_matrix = bases.wavelets.Haar.matrix(8)
+        compressed = bases.wavelets.Haar.compress(haar_matrix)
+        true_compressed = np.multiply(np.array([[1,  1,  1,  1],
+                                                [1,  1,  1, -1],
+                                                [1,  1, -1,  1],
+                                                [1,  1, -1, -1],
+                                                [1, -1,  1,  1],
+                                                [1, -1,  1, -1],
+                                                [1, -1, -1,  1],
+                                                [1, -1, -1, -1]]),
+                                      np.array([1/np.sqrt(8),
+                                                1/np.sqrt(8),
+                                                1/np.sqrt(4),
+                                                1/np.sqrt(2)]))
+        np.testing.assert_almost_equal(compressed, true_compressed)
 
 
 class GeneralTests(unittest.TestCase):
