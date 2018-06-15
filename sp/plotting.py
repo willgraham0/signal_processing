@@ -5,6 +5,7 @@ transformations into other bases."""
 import numpy as np
 import itertools
 import matplotlib.pyplot as plt
+import matplotlib.patheffects as path_effects
 from . import bases
 
 
@@ -63,6 +64,8 @@ def plot_wavelet_heatmap(signal, family):
     ax.set_ylabel('Dimension')
     for i, j in itertools.product(range(m), range(n)):
         text = ax.text(j, i, round(matrix[i, j], 2), ha="center", va="center", color="w")
+        text.set_path_effects([path_effects.Stroke(linewidth=1, foreground='black'),
+                               path_effects.Normal()])
     fig.tight_layout()
     plt.show()
     
