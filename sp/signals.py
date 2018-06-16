@@ -26,7 +26,7 @@ def square_1d_signal(m):
     return s
 
 
-def chequer(m, n, k):
+def chequered(m, n, k):
     """Return a 2-dimensional chequered matrix of dimensions (m by n)
     with patches of dimensions (k by k).
     """
