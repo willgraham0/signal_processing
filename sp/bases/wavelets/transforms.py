@@ -57,3 +57,4 @@ def heatmap_matrix(signal, family):
     coefficients = idwt(signal, family)
     pre_compress = np.multiply(wavelet_matrix, coefficients)
     return Family.compress(pre_compress)
+    #ij,jk->ijk

@@ -27,8 +27,7 @@ def square_1d_signal(m):
 
 
 def chequered(m, n, k):
-    """Return a 2-dimensional chequered matrix of dimensions (m by n)
-    with patches of dimensions (k by k).
+    """Return a 2-dimensional chequered matrix of dimension (m by n).
     """
     array = np.zeros([m, n], dtype=np.uint8)
     for x, y in itertools.product(range(n), range(m)):
