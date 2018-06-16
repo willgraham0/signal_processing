@@ -73,5 +73,18 @@ def ifourier_matrix(m):
     omega = np.exp(-2*np.pi*1j/m)
     return np.power(omega, k*j)/np.sqrt(m)
 
-# def diagonal(m):
-#     return np.diag()
+
+def diagonal(m):
+    """Return the diagonal matrix of the Fourier matrix.
+    """
+    j = np.arange(m)
+    omega = np.exp(-2*np.pi*1j/m*)
+    return np.diag(np.power(omega, j))
+
+
+def idiagonal(m):
+    """Return the diagonal matrix of the inverse Fourier matrix.
+    """
+    j = np.arange(m)
+    omega = np.exp(-2*np.pi*1j/m*)
+    return np.diag(np.power(omega, j))
