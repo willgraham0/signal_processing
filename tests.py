@@ -12,23 +12,24 @@ class FourierTests(unittest.TestCase):
     """
 
     def test_inverse_is_transpose(self):
-        """Test if the inverse of the Fourier matrix (real) is the same
-        as the transpose of the Fourier matrix (real). This should be
-        true for an orthogonal basis, which the Fourier basis is.
+        """Test if the inverse of the Fourier matrix is the same as the
+        transpose of the complex conjugate of the Fourier matrix. This
+        should be true for an orthogonal, complex basis, which is true
+        of the Fourier basis.
         """
         fourier_matrix = bases.fourier.fourier_matrix(10)
         ifourier_matrix = bases.fourier.ifourier_matrix(10)
-        np.testing.assert_almost_equal(fourier_matrix.T.real, ifourier_matrix.real)
+        np.testing.assert_almost_equal(fourier_matrix.conj().T, ifourier_matrix)
 
 
     def test_inverse_is_inverse(self):
-        """Test if the inverse of the Fourier matrix (real) is the same
-        as the numpy.linalg.inv of the Fourier matrix (real).
+        """Test if the inverse of the Fourier matrix is the same as the
+        numpy.linalg.inv of the Fourier matrix.
         """
         fourier_matrix = bases.fourier.fourier_matrix(10)
         np_ifourier_matrix = np.linalg.inv(fourier_matrix)
         ifourier_matrix = bases.fourier.ifourier_matrix(10)
-        np.testing.assert_almost_equal(ifourier_matrix.real, np_ifourier_matrix.real)
+        np.testing.assert_almost_equal(ifourier_matrix, np_ifourier_matrix)
 
 
     def test_1d_signal_analysis_and_synthesis(self):

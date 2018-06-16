@@ -47,8 +47,8 @@ def idft2(coefficients):
 
 
 def fourier_matrix(m):
-    """Return the Fourier matrix (m by m). This matrix multiplies a
-    vector of coefficients to construct a signal.
+    """Return the orthonormal Fourier matrix (m by m). This matrix
+    multiplies a vector of coefficients to construct a signal.
     """
     k, j = np.meshgrid(np.arange(m), np.arange(m))
     omega = np.exp(2*np.pi*1j/m)
@@ -56,8 +56,8 @@ def fourier_matrix(m):
 
 
 def ifourier_matrix(m):
-    """Return the inverse Fourier matrix (m by m). This matrix
-    multiplies a signal to obtain a vector of coefficients.
+    """Return the inverse orthonormal Fourier matrix (m by m). This
+    matrix multiplies a signal to obtain a vector of coefficients.
     """    
     k, j = np.meshgrid(np.arange(m), np.arange(m))
     omega = np.exp(-2*np.pi*1j/m)

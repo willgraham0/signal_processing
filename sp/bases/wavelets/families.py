@@ -43,9 +43,9 @@ class Haar(metaclass=Wavelets):
 
     @staticmethod
     def matrix(m):
-        """Return the Haar wavelet matrix (m by m) where log2(m) is a real
-        number. This matrix multiplies a vector of coefficients to construct
-        a signal.
+        """Return the orthonormal Haar wavelet matrix (m by m) where
+        log2(m) is a real number. This matrix multiplies a vector of
+        coefficients to construct a signal.
         """
         if not np.log2(m).is_integer():
             raise ValueError("The value of log2(m) must be a whole number.")
@@ -64,9 +64,9 @@ class Haar(metaclass=Wavelets):
 
     @staticmethod
     def imatrix(m):
-        """Return the inverse Haar wavelet matrix (m by m) where log2(m) is
-        a real number. This matrix multiplies a signal to obtain a vector of
-        coefficients a signal.
+        """Return the inverse orthonormal Haar wavelet matrix (m by m)
+        where log2(m) is a real number. This matrix multiplies a signal
+        to obtain a vector of coefficients a signal.
         """
         return Haar.matrix(m).T
 
