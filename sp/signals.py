@@ -4,6 +4,7 @@
 
 import numpy as np
 import random
+import itertools
 
 
 def random_1d_signal(m, n):
@@ -23,3 +24,16 @@ def square_1d_signal(m):
     s = np.zeros(m)
     s[int(m/4):int(3*m/4)] = 1
     return s
+
+
+def chequer(m, n, k):
+    """Return a 2-dimensional chequered matrix of dimensions (m by n)
+    with patches of dimensions (k by k).
+    """
+    array = np.zeros([m, n], dtype=np.uint8)
+    for x, y in itertools.product(range(n), range(m)):
+        if (x % k) // (k//2) == (y % k) // (k//2):
+            array[y, x] = 0
+        else:
+            array[y, x] = 255
+    return array

@@ -42,6 +42,16 @@ class FourierTests(unittest.TestCase):
         np.testing.assert_almost_equal(original.real, synthesised.real)
 
 
+    def test_diag_inverse_is_transpose(self):
+        """Test if the inverse of the Fourier matrix (Diagonal only) is
+        the same as the transpose of the complex conjugate of the
+        Fourier matrix (Diagonal only).
+        """
+        diag_fmatrix = bases.fourier.diagonal(10)
+        idiag_fmatrix = bases.fourier.idiagonal(10)
+        np.testing.assert_almost_equal(diag_fmatrix.conj().T, idiag_fmatrix)        
+
+
 class HaarTests(unittest.TestCase):
     """Test cases for the Haar basis.
     """

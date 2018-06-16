@@ -30,7 +30,15 @@ def idwt(signal, family):
     """
     Family = get_family(family)
     return Family.imatrix(len(signal)).dot(signal)
-        
+
+
+# def idwt2(signal, family):
+#     """Return the Wavelet coefficients of a 2-dimensional signal.
+#     """
+#     rows, cols = signal.shape
+#     Family = get_family(family)
+#     return Family.imatrix(rows).dot(signal.dot(Family.imatrix(cols)))
+
 
 def dwt(coefficients, family):
     """Return the 1-dimensional signal from its Wavelet coefficients.

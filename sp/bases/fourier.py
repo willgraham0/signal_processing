@@ -13,23 +13,6 @@ def idft(signal):
     return ifourier_matrix(len(signal)).dot(signal)
 
 
-# def factorise(m):
-
-
-# def ifft(signal):
-#     """Return the Fourier coefficients of a 1-dimensional signal using
-#     the Fast Fourier Transform algorithm. The algorithm used is limited
-#     to power-of-two sizes.
-#     """
-#     length = len(signal)
-#     if length % 2 != 0:
-#         raise ValueError("The length of the signal must be divisible by 2.")
-#     if length == 1:
-#         pass
-#     else:
-#         return fft(signal[:length])
-
-
 def dft(coefficients):
     """Return the 1-dimensional signal from its Fourier coefficients.
     """
@@ -78,7 +61,7 @@ def diagonal(m):
     """Return the diagonal matrix of the Fourier matrix.
     """
     j = np.arange(m)
-    omega = np.exp(-2*np.pi*1j/m*)
+    omega = np.exp(-2*np.pi*1j/m)
     return np.diag(np.power(omega, j))
 
 
@@ -86,5 +69,5 @@ def idiagonal(m):
     """Return the diagonal matrix of the inverse Fourier matrix.
     """
     j = np.arange(m)
-    omega = np.exp(-2*np.pi*1j/m*)
+    omega = np.exp(2*np.pi*1j/m)
     return np.diag(np.power(omega, j))

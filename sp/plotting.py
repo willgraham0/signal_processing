@@ -21,7 +21,7 @@ def coroutine(func):
 
 
 @coroutine
-def plot(signal):
+def plot(signal, grid=False):
     """Plot the signal. New signals can be sent to this coroutine via
     the coroutine's send method.
     """
@@ -29,14 +29,14 @@ def plot(signal):
     fig = plt.figure()
     dimensions = len(signal.shape)
     ax = fig.add_subplot(1, 1, 1)
-    ax.set_xlabel('Dimension')
-    ax.set_ylabel('Amplitude')
-    ax.grid(True)
+    ax.grid(grid)
     while True:
         if len(signal.shape) == dimensions:
             if signal.dtype == np.complex128:
                 signal = signal.real
             if dimensions == 1:
+                ax.set_xlabel('Dimension')
+                ax.set_ylabel('Amplitude')
                 ax.plot(np.arange(len(signal)), signal)
             if dimensions == 2:
                 n = len(fig.axes)
