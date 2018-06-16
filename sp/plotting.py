@@ -69,17 +69,3 @@ def plot_wavelet_heatmap(signal, family):
     fig.tight_layout()
     plt.show()
     
-
-# @coroutine
-# def plot(signal):
-#     """Plot the signal. New signals can be sent to this coroutine.
-#     """
-#     plt.ion()
-#     fig = plt.figure()
-#     ax = fig.add_subplot(111)
-#     while True:
-#         if signal.dtype == np.complex128:
-#             signal = signal.real
-#         ax.plot(np.arange(len(signal)), signal)
-#         fig.canvas.draw()
-#         signal = (yield)

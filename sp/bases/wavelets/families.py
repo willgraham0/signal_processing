@@ -85,3 +85,4 @@ class Haar(metaclass=Wavelets):
                 vectors.append(accum)
                 accum = np.zeros(length)
         return np.column_stack(vectors)
+        
