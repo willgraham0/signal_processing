@@ -37,8 +37,8 @@ class FourierTests(unittest.TestCase):
         its original (real) after analysis (into Fourier domain).
         """
         original = signals.random_1d_signal(20, 5)
-        coeffs = bases.fourier.dft(original)
-        synthesised = bases.fourier.idft(coeffs)
+        coeffs = bases.fourier.idft(original)
+        synthesised = bases.fourier.dft(coeffs)
         np.testing.assert_almost_equal(original.real, synthesised.real)
 
 
@@ -136,7 +136,7 @@ class HaarTests(unittest.TestCase):
         """
         original = signals.random_1d_signal(17, 5)
         with self.assertRaises(ValueError):
-            coeffs = bases.wavelets.dwt(original, 'Haar')
+            coeffs = bases.wavelets.idwt(original, 'Haar')
 
 
     def test_1d_signal_analysis_and_synthesis(self):
@@ -144,8 +144,8 @@ class HaarTests(unittest.TestCase):
         its original (real) after analysis (into Haar domain).
         """
         original = signals.random_1d_signal(16, 5)
-        coeffs = bases.wavelets.dwt(original, 'Haar')
-        synthesised = bases.wavelets.idwt(coeffs, 'Haar')
+        coeffs = bases.wavelets.idwt(original, 'Haar')
+        synthesised = bases.wavelets.dwt(coeffs, 'Haar')
         np.testing.assert_almost_equal(original.real, synthesised.real)
 
 

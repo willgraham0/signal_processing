@@ -25,14 +25,14 @@ def get_family(family):
         raise NotImplementedError('{} family is not implemented.'.format(family))
 
 
-def dwt(signal, family):
+def idwt(signal, family):
     """Return the Wavelet coefficients of a 1-dimensional signal.
     """
     Family = get_family(family)
     return Family.imatrix(len(signal)).dot(signal)
         
 
-def idwt(coefficients, family):
+def dwt(coefficients, family):
     """Return the 1-dimensional signal from its Wavelet coefficients.
     """
     Family = get_family(family)
@@ -46,9 +46,6 @@ def heatmap_matrix(signal, family):
     dilations) for a 1-dimensional signal."""
     Family = get_family(family)
     wavelet_matrix = Family.matrix(len(signal))
-    coefficients = dwt(signal, family)
+    coefficients = idwt(signal, family)
     pre_compress = np.multiply(wavelet_matrix, coefficients)
     return Family.compress(pre_compress)
-
-
-
