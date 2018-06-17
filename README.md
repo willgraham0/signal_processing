@@ -11,7 +11,7 @@ vectors in the vector space and are referred to as the _basis_ of the
 vector space - they are said to _span_ the space.
 
 In signal processing, we want to change our signal into a linear
-combination of a basis of independent vectors for us to then remove the
+combination of a basis of independent vectors for us then to remove the
 independent vectors that contribute the least to the signal. The trick
 is to find the most suitable basis that allows us to compress the signal
 or remove noise without too badly degrading the quality of the signal.
@@ -25,9 +25,11 @@ basis.
 
 The Fourier transform involves changing our signal into a linear
 combination of independent vectors that each represent a different
-frequency of sinusoid that makes up the signal. The extend to which each
+frequency of sinusoid that makes up the signal. The extent to which each
 frequency contributes to the overall signal is provided by the coefficient
-of this independent vector.
+of each independent vector.
+
+#### A Simple Fourier Transformation
 
 Let us create a random signal of length 64 that is formed of 3 sinusoids
 of random frequency.
@@ -47,28 +49,28 @@ signal_plot = sp.plotting.plot(signal, grid=True)
 
 Now perform the inverse Discete Fourier Transform on the signal to obtain
 a vector of coefficients representing the relative contributions of each
-independent vector in the Fourier basis. (There will be 64 independent
-vectors in this basis.)
-
-Plot the coefficients.
+independent vector in the (inverse) Fourier basis. (There will be 64
+independent vectors in this basis.)
 
 ```python
 coeffs = sp.bases.fourier.idft(signal)
 frequency_plot = sp.plotting.plot(coeffs, grid=True)
-``` 
+```
+
+And plot the vector of coefficients.
 
 ![alt text][fourier_frequency_plot]
 
 We can see 6 peaks in the plot above and a symmetry about 32 on the 
-dimensions axis. This is because the Fourier basis is a complex basis.
-We ignore the symmetry and ackowledge that there are 3 peaks for the 3
-frequencies making up the original signal. All the other values are
+dimensions axis. This is because the (inverse) Fourier basis is a complex
+basis. We ignore the symmetry and ackowledge that there are 3 peaks for
+the 3 frequencies making up the original signal. All the other values are
 zero.
 
-Therefore, if we were to transmit this signal it would be faster
-to transmit a smaller vector of the locations and values of the peaks 
-in the plot and reconstruct it using the Fourier basis once it has been
-received rather than send the much longer original signal.
+Therefore, if we were to transmit this signal it would be faster than
+sending the much longer original signal - we are only transmitting small
+vector of the locations and values of the peaks in the plot and reconstructing
+it using the Fourier basis once it has been received.
 
 We could also remove the frequencies that we believe are unwanted and 
 reconstruct the signal without these components. Let's do that below for
@@ -82,7 +84,7 @@ frequency_plot.send(coeffs)
 
 ![alt text][fourier_frequency_plot_attenuated]
 
-And apply the Discret Fourier Transform to the modified coefficients to
+Apply the Discret Fourier Transform to the modified coefficients to
 reconstruct the signal without these frequencies and plot (in orange).
 
 ```python
@@ -91,6 +93,12 @@ signal_plot.send(modified)
 ```
 
 ![alt text][fourier_signal_plot_modified]
+
+#### Image Frequency Modulation
+
+The Fourier transformation can be extended to signals of higher
+dimensionality.
+
 
 
 ### Wavelets
