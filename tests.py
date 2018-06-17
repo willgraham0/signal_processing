@@ -164,20 +164,20 @@ class HaarTests(unittest.TestCase):
         no zeros.
         """
         haar_matrix = bases.wavelets.Haar.matrix(8)
-        compressed = bases.wavelets.Haar.compress(haar_matrix)
-        true_compressed = np.multiply(np.array([[1,  1,  1,  1],
-                                                [1,  1,  1, -1],
-                                                [1,  1, -1,  1],
-                                                [1,  1, -1, -1],
-                                                [1, -1,  1,  1],
-                                                [1, -1,  1, -1],
-                                                [1, -1, -1,  1],
-                                                [1, -1, -1, -1]]),
-                                      np.array([1/np.sqrt(8),
-                                                1/np.sqrt(8),
-                                                1/np.sqrt(4),
-                                                1/np.sqrt(2)]))
-        np.testing.assert_almost_equal(compressed, true_compressed)
+        squeezed = bases.wavelets.Haar.squeeze(haar_matrix)
+        true_squeezed = np.multiply(np.array([[1,  1,  1,  1],
+                                              [1,  1,  1, -1],
+                                              [1,  1, -1,  1],
+                                              [1,  1, -1, -1],
+                                              [1, -1,  1,  1],
+                                              [1, -1,  1, -1],
+                                              [1, -1, -1,  1],
+                                              [1, -1, -1, -1]]),
+                                    np.array([1/np.sqrt(8),
+                                              1/np.sqrt(8),
+                                              1/np.sqrt(4),
+                                              1/np.sqrt(2)]))
+        np.testing.assert_almost_equal(squeezed, true_squeezed)
 
 
 class GeneralTests(unittest.TestCase):

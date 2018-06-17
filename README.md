@@ -2,32 +2,31 @@
 
 ## Introduction
 
-The purpose of this project is to better understand Fourier and Wavelet
-transformations, which are commonly used in applications such as signal
-compression and noise removal.
+Any signal can be thought of as a _vector_ that lies in a _vector space_.
+The vector can be formed by the linear combination of other _indepedent_
+vectors that lie in the same vector space. The independent vectors are
+ones that cannot be formed by the linear combination of the others.
+These independent vectors can be linearly combined to form all possible
+vectors in the vector space and are referred to as the _basis_ of the
+vector space - they are said to _span_ the space.
 
-The code has not been written with speed in mind - there are many good
-libraries out there that do this stuff fast for real applications - but
-I hope for the purposes of illustrating the theory, that it does the job.
+In signal processing, we want to change our signal into a linear
+combination of a basis of independent vectors for us to then remove the
+independent vectors that contribute the least to the signal. The trick
+is to find the most suitable basis that allows us to compress the signal
+or remove noise without too badly degrading the quality of the signal.
 
-## The Basis of a Vector Space
+The best bases are orthogonal and the two that I have so far considered
+are the Fourier basis and the Haar wavelet basis.
 
-Any 1-dimensional signal or 2-dimensional image can be thought of as a
-high dimensional _vector_ existing in a high dimensional _vector space_.
-It can be also be thought of as a linear combination of other high
-dimensional vectors that lie in the same space and which are _indepedent_
-of one another - vectors that cannot be formed by the linear combination
-of the others. These independent vectors can be linearly combined to
-form all possible vectors in the vector space and are referred to as the
-_basis_ of the vector space - they _span_ the space.
+### Fourier
 
-For signal compression, the goal is to find the right basis that allows
-us to remove the contributions of the independent vectors that contribute
-the least to the signal. These bases are orthogonal.
+The Fourier transform involves changing our signal into a linear
+combination of independent vectors that each represent a different
+frequency of sinusoid. The extend to which each frequency contributes to
+the overall signal is provided by its amplitude, which is the coefficient
+corresponding to this independent vector.
 
-### Fourier Transformations
-
-
-### Wavelet Transformations
+### Wavelets
 
 #### Haar 

@@ -72,8 +72,8 @@ class Haar(metaclass=Wavelets):
 
 
     @staticmethod
-    def compress(matrix):
-        """Return a compressed version of the wavelet imatrix (so that
+    def squeeze(matrix):
+        """Return a squeezed version of the wavelet imatrix (so that
         the number of columns equals the number of dilations of the Haar
         wavelet)."""
         vectors = []
