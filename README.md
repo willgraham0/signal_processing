@@ -47,7 +47,7 @@ signal_plot = sp.plotting.plot(signal, grid=True)
 
 Now perform the inverse Discete Fourier Transform on the signal to obtain
 a vector of coefficients representing the relative contributions of each
-independent vectors in the Fourier basis. (There will be 64 independent
+independent vector in the Fourier basis. (There will be 64 independent
 vectors in this basis.)
 
 Plot the coefficients.
@@ -98,7 +98,7 @@ signal_plot.send(modified)
 #### Haar 
 
 
-[fourier_signal_plot]: https://github.com/willgraham0/signal_processing/tree/image_upload/images/fourier_signal_plot.png "fourier_signal_plot"
-[fourier_frequency_plot]: https://github.com/willgraham0/signal_processing/tree/image_upload/images/fourier_frequency_plot.png "fourier_frequency_plot"
-[fourier_frequency_plot_attenuated]: https://github.com/willgraham0/signal_processing/tree/image_upload/images/fourier_frequency_plot.png "fourier_frequency_plot_attenuated"
-[fourier_signal_plot_modified]: https://github.com/willgraham0/signal_processing/tree/image_upload/images/fourier_signal_plot.png "fourier_signal_plot_modified"
+[fourier_signal_plot]: images/fourier_signal_plot.png "fourier_signal_plot"
+[fourier_frequency_plot]: images/fourier_frequency_plot.png "fourier_frequency_plot"
+[fourier_frequency_plot_attenuated]: images/fourier_frequency_plot.png "fourier_frequency_plot_attenuated"
+[fourier_signal_plot_modified]: images/fourier_signal_plot.png "fourier_signal_plot_modified"
