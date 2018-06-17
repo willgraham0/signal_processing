@@ -13,10 +13,10 @@ def random_1d_signal(m, n):
     2*pi*1 and 2*pi*10.
     """
     amp = 10
-    freq = 10
-    s = random.randint(1, amp)*np.cos(np.linspace(0, 2*np.pi*random.randint(1, freq), m))
-    for _ in range(n - 1):
-        s = s + random.randint(1, amp)*np.cos(np.linspace(0, 2*np.pi*random.randint(1, freq), m))
+    freq = m
+    s = random.randint(1, amp)*np.cos(2*np.pi*random.randint(1, freq)*1/m*np.arange(0, m))
+    for _ in range(n-1):
+        s = s + random.randint(1, amp)*np.cos(2*np.pi*random.randint(1, freq)*1/m*np.arange(0, m))
     return s
 
 

@@ -36,7 +36,7 @@ def plot(signal, grid=False):
                 signal = signal.real
             if dimensions == 1:
                 ax.set_xlabel('Dimension')
-                ax.set_ylabel('Amplitude')
+                ax.set_ylabel('Value')
                 ax.plot(np.arange(len(signal)), signal)
             if dimensions == 2:
                 n = len(fig.axes)

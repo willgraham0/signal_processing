@@ -29,14 +29,61 @@ frequency of sinusoid that makes up the signal. The extend to which each
 frequency contributes to the overall signal is provided by the coefficient
 of this independent vector.
 
-Let us create a random signal of length 16 that is formed of 3 sinusoids
-of random frequency and amplitude.
+Let us create a random signal of length 64 that is formed of 3 sinusoids
+of random frequency.
 
-```
+```python
 import sp
-signal = sp.signals.random_1d_signal(16, 3)
+signal = sp.signals.random_1d_signal(64, 3)
 ```
+
+We can then plot this signal to see what it looks like.
+
+```python
+signal_plot = sp.plotting.plot(signal, grid=True)
+```
+
+![alt text][fourier_signal_plot]
+
+Now perform the inverse Discete Fourier Transform on the signal to obtain
+a vector of coefficients representing the relative contributions of each
+independent vectors in the Fourier basis. (There will be 64 independent
+vectors in this basis.)
+
+Plot the coefficients.
+
+```python
+coeffs = sp.bases.fourier.idft(signal)
+frequency_plot = sp.plotting.plot(coeffs, grid=True)
+``` 
+
+![alt text][fourier_frequency_plot]
+
+We can see 6 peaks in the plot above and a symmetry about 32 on the 
+dimensions axis. This is because the Fourier basis is a complex basis.
+We ignore the symmetry and ackowledge that there are 3 peaks for the 3
+frequencies making up the original signal. All the other values are
+zero.
+
+Therefore, if we were to transmit this signal it would be faster
+to transmit a smaller vector of the locations and values of the peaks 
+in the plot and reconstruct it using the Fourier basis once it has been
+received rather than send the much longer original signal.
+
+We could also remove the frequencies that we believe are unwanted and 
+reconstruct the signal without this conponents. Let's do that below for
+the frequencies that have values between 5 and 10, using numpy.
+
+```python
+import numpy as np
+coeffs = np.where((coeffs > 5) & (coeffs < 10), 0, coeffs)
+```
+
 
 ### Wavelets
 
 #### Haar 
+
+
+[fourier_signal_plot]: (https://github.com/willgraham0/signal_processing/images/fourier_signal_plot.png "fourier_signal_plot")
+[fourier_frequency_plot]: (https://github.com/willgraham0/signal_processing/images/fourier_frequency_plot.png "fourier_frequency_plot")
