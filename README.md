@@ -71,13 +71,26 @@ in the plot and reconstruct it using the Fourier basis once it has been
 received rather than send the much longer original signal.
 
 We could also remove the frequencies that we believe are unwanted and 
-reconstruct the signal without this conponents. Let's do that below for
+reconstruct the signal without these components. Let's do that below for
 the frequencies that have values between 5 and 10, using numpy.
 
 ```python
 import numpy as np
 coeffs = np.where((coeffs > 5) & (coeffs < 10), 0, coeffs)
+frequency_plot.send(coeffs)
 ```
+
+![alt text][fourier_frequency_plot_attenuated]
+
+And apply the Discret Fourier Transform to the modified coefficients to
+reconstruct the signal without these frequencies and plot (in orange).
+
+```python
+modified = sp.bases.fourier.dft(coeffs)
+signal_plot.send(modified)
+```
+
+![alt text][fourier_signal_plot_modified]
 
 
 ### Wavelets
@@ -87,3 +100,5 @@ coeffs = np.where((coeffs > 5) & (coeffs < 10), 0, coeffs)
 
 [fourier_signal_plot]: (https://github.com/willgraham0/signal_processing/images/fourier_signal_plot.png "fourier_signal_plot")
 [fourier_frequency_plot]: (https://github.com/willgraham0/signal_processing/images/fourier_frequency_plot.png "fourier_frequency_plot")
+[fourier_frequency_plot_attenuated]: (https://github.com/willgraham0/signal_processing/images/fourier_frequency_plot.png "fourier_frequency_plot_attenuated")
+[fourier_signal_plot_modified]: (https://github.com/willgraham0/signal_processing/images/fourier_signal_plot.png "fourier_signal_plot_modified")
