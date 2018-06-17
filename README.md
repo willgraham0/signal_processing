@@ -98,7 +98,7 @@ signal_plot.send(modified)
 #### Haar 
 
 
-[fourier_signal_plot]: https://github.com/willgraham0/signal_processing/tree/images/fourier_signal_plot.png "fourier_signal_plot"
-[fourier_frequency_plot]: https://github.com/willgraham0/signal_processing/tree/images/fourier_frequency_plot.png "fourier_frequency_plot"
-[fourier_frequency_plot_attenuated]: https://github.com/willgraham0/signal_processing/tree/images/fourier_frequency_plot.png "fourier_frequency_plot_attenuated"
-[fourier_signal_plot_modified]: https://github.com/willgraham0/signal_processing/tree/images/fourier_signal_plot.png "fourier_signal_plot_modified"
+[fourier_signal_plot]: https://github.com/willgraham0/signal_processing/tree/image_upload/images/fourier_signal_plot.png "fourier_signal_plot"
+[fourier_frequency_plot]: https://github.com/willgraham0/signal_processing/tree/image_upload/images/fourier_frequency_plot.png "fourier_frequency_plot"
+[fourier_frequency_plot_attenuated]: https://github.com/willgraham0/signal_processing/tree/image_upload/images/fourier_frequency_plot.png "fourier_frequency_plot_attenuated"
+[fourier_signal_plot_modified]: https://github.com/willgraham0/signal_processing/tree/image_upload/images/fourier_signal_plot.png "fourier_signal_plot_modified"
