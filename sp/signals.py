@@ -9,12 +9,14 @@ import itertools
 
 def random_1d_signal(m, n):
     """Return a random 1-dimensional signal comprised of 'n' cosines of
-    length 'm' with amplitude between 1 and 10.
+    length 'm' with amplitude between 1 and 10 and frequency between
+    2*pi*1 and 2*pi*10.
     """
     amp = 10
-    s = random.randint(1, amp)*np.cos(np.linspace(0, 2*np.pi*random.randint(0, m), m))
+    freq = 10
+    s = random.randint(1, amp)*np.cos(np.linspace(0, 2*np.pi*random.randint(1, freq), m))
     for _ in range(n - 1):
-        s = s + random.randint(1, amp)*np.cos(np.linspace(0, 2*np.pi*random.randint(0, m), m))
+        s = s + random.randint(1, amp)*np.cos(np.linspace(0, 2*np.pi*random.randint(1, freq), m))
     return s
 
 
