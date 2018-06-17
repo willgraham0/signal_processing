@@ -42,8 +42,9 @@ We can then plot this signal to see what it looks like.
 ```python
 signal_plot = sp.plotting.plot(signal, grid=True)
 ```
-
+<p align="center">
 ![alt text][fourier_signal_plot]
+</p>
 
 Now perform the inverse Discete Fourier Transform on the signal to obtain
 a vector of coefficients representing the relative contributions of each
@@ -100,5 +101,5 @@ signal_plot.send(modified)
 
 [fourier_signal_plot]: images/fourier_signal_plot.png "fourier_signal_plot"
 [fourier_frequency_plot]: images/fourier_frequency_plot.png "fourier_frequency_plot"
-[fourier_frequency_plot_attenuated]: images/fourier_frequency_plot.png "fourier_frequency_plot_attenuated"
-[fourier_signal_plot_modified]: images/fourier_signal_plot.png "fourier_signal_plot_modified"
+[fourier_frequency_plot_attenuated]: images/fourier_frequency_plot_attenuated.png "fourier_frequency_plot_attenuated"
+[fourier_signal_plot_modified]: images/fourier_signal_plot_modified.png "fourier_signal_plot_modified"
