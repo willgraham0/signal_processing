@@ -31,12 +31,12 @@ of each independent vector.
 
 #### A Simple Fourier Transformation
 
-Let us create a random signal of length 64 that is formed of 3 sinusoids
-of random frequency.
+Let us create a signal of length 64 that is formed of 3 sinusoids
+of random frequency and amplitude.
 
 ```python
 import sp
-signal = sp.signals.random_1d_signal(64, 3)
+signal = sp.signals.sum_of_sinusoids(64, 3)
 ```
 
 We can then plot this signal to see what it looks like.
@@ -97,7 +97,7 @@ signal_plot.send(modified)
 #### Image Frequency Modulation
 
 The Fourier transformation can be extended to signals of higher
-dimensionality.
+dimensions.
 
 
 

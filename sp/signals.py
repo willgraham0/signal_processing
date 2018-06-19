@@ -7,8 +7,8 @@ import random
 import itertools
 
 
-def random_1d_signal(m, n):
-    """Return a random 1-dimensional signal comprised of 'n' cosines of
+def sum_of_sinusoids(m, n):
+    """Return a 1-dimensional signal comprised of 'n' cosines of
     length 'm' with amplitude between 1 and 10 and frequency between
     2*pi*1 and 2*pi*10.
     """
@@ -38,3 +38,7 @@ def chequered(m, n, k):
         else:
             array[y, x] = 255
     return array
+
+
+# def chunks()
+

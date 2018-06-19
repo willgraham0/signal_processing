@@ -36,7 +36,7 @@ class FourierTests(unittest.TestCase):
         """Test if a 1-dimensional signal (real) is synthesised back to
         its original (real) after analysis (into Fourier domain).
         """
-        original = signals.random_1d_signal(20, 5)
+        original = signals.sum_of_sinusoids(20, 5)
         coeffs = bases.fourier.idft(original)
         synthesised = bases.fourier.dft(coeffs)
         np.testing.assert_almost_equal(original.real, synthesised.real)
@@ -144,7 +144,7 @@ class HaarTests(unittest.TestCase):
         log2(m) is not an integer for the Haar discrete wavelet
         transform. 
         """
-        original = signals.random_1d_signal(17, 5)
+        original = signals.sum_of_sinusoids(17, 5)
         with self.assertRaises(ValueError):
             coeffs = bases.wavelets.idwt(original, 'Haar')
 
@@ -153,7 +153,7 @@ class HaarTests(unittest.TestCase):
         """Test if a 1-dimensional signal (real) is synthesised back to
         its original (real) after analysis (into Haar domain).
         """
-        original = signals.random_1d_signal(16, 5)
+        original = signals.sum_of_sinusoids(16, 5)
         coeffs = bases.wavelets.idwt(original, 'Haar')
         synthesised = bases.wavelets.dwt(coeffs, 'Haar')
         np.testing.assert_almost_equal(original.real, synthesised.real)
