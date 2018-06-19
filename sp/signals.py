@@ -40,5 +40,38 @@ def chequered(m, n, k):
     return array
 
 
-# def chunks()
+def chequered2(m, n, t):
+    """An alternative. Return a 2s array of black and white chequers.
+    """
+    s = mp.zeros((m, n))
+    mchunks = list(chunks(range(m), t))
+    nchunks = list(chunks(range(n), t))
+    for i, mchunk in enumerate(mchunks):
+        for j, nchunk in enumerate(nchunks):
+            if (i%2 == 0 and j%2 != 0) or (i%2 != 0 and j%2 == 0):
+                s[mchunk[0]:mchunk[-1]+1, nchunk[0]:nchunk[-1]+1] = 255
+    return s
 
+
+def stripes(m, n, t, vertical=True):
+    """Return a 2-dimensional array of black and white stripes, either
+    horizontal or vertical.
+    """
+    s = np.zeros((m, n))
+    flag = True
+    if vertical:
+        for i, chunk in enumerate(chunks(range(n), t)):
+            if i//2 == 0:
+                s[:, chunk] = 255
+    else:
+        for i, chunk in enumerate(chunks(range(m), t)):
+            if i//2 == 0:
+                s[chunk, :] = 255
+    return s
+
+
+def chunks(a_list, n):
+    """Return ranges of length 'n' along the list provided.
+    """
+    for i in range(0, len(a_list), n):
+        yield a_list[i: i+n]
