@@ -100,6 +100,61 @@ The Fourier transformation can be extended to signals of higher
 dimensions.
 
 
+#### The Problem with the Fourier basis
+
+As discussed, the Fourier bases is one that is made up of independent
+vectors that represent different frequencies of sinusoids that all sum
+to make a signal. In the first example the signal was a sum of 3
+frequencies of sinusoid, which means that only 3 of the 64 independent
+vectors were needed. Some signals, however, are not made up of only 2 or 3
+frequencies but actually all the indepentent vectors that made up the
+space of, in that example, 64 dimensions.
+
+Let's make a square wave, this time of length 100, and plot it.
+
+```python
+square = sp.signals.square_signal(100)
+signal_plot = sp.plotting.plot(square, grid=True)
+``` 
+
+![alt text][square_signal_plot]
+
+Now let's find it's coefficients and plot those.
+
+```python
+coeffs = sp.bases.fourier.idft(square)
+frequency_plot = sp.plotting.plot(coeffs)
+```
+
+![alt text][square_frequency_plot]
+
+We can see that we now have 100 non-zero values - 100 non-zero coefficients
+of independent vectors in the (inverse) Fourier Basis. It is going to be
+difficult to compress this signal, but let's try. Set coefficients with
+values less than 0.1 and greater than -0.1 to zero.
+
+```python
+import numpy as np
+coeffs = np.where((coeffs > -0.1) & (coeffs < 0.1), 0, coeffs)
+frequency_plot.send(coeffs)
+```
+
+The new coefficients are in orange.
+
+![alt text][square_frequency_plot_attenuated]
+
+And reassembling the signal from these modified coefficients...
+
+```python
+modified = sp.bases.fourier.dft(coeffs)
+signal_plot.send(modified)
+```
+
+![alt text][square_signal_plot_modified]
+
+As you can see, compression through the removal of the independent vectors
+with coefficients between the range of -0.1 and 0.1 has produced a poor
+result. We can do better for signals such as these - using wavelets!
 
 ### Wavelets
 
@@ -110,3 +165,7 @@ dimensions.
 [fourier_frequency_plot]: images/fourier_frequency_plot.png "fourier_frequency_plot"
 [fourier_frequency_plot_attenuated]: images/fourier_frequency_plot_attenuated.png "fourier_frequency_plot_attenuated"
 [fourier_signal_plot_modified]: images/fourier_signal_plot_modified.png "fourier_signal_plot_modified"
+[square_signal_plot]: images/square_signal_plot.png "square_signal_plot"
+[square_frequency_plot]: images/square_frequency_plot.png "square_frequency_plot"
+[square_frequency_plot_attenuated]: images/square_frequency_plot_attenuated.png "square_frequency_plot_attenuated"
+[square_signal_plot_modified]: images/square_signal_plot_modified.png "square_signal_plot_modified"
