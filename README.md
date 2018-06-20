@@ -129,9 +129,10 @@ frequency_plot = sp.plotting.plot(coeffs)
 ![alt text][square_frequency_plot]
 
 We can see that we now have 100 non-zero values - 100 non-zero coefficients
-of independent vectors in the (inverse) Fourier Basis. It is going to be
+of independent vectors in the (inverse) Fourier basis. It is going to be
 difficult to compress this signal, but let's try. Set coefficients with
-values less than 0.1 and greater than -0.1 to zero.
+values less than 0.1 and greater than -0.1 to zero. The new coefficients
+are in orange.
 
 ```python
 import numpy as np
@@ -139,11 +140,9 @@ coeffs = np.where((coeffs > -0.1) & (coeffs < 0.1), 0, coeffs)
 frequency_plot.send(coeffs)
 ```
 
-The new coefficients are in orange.
-
 ![alt text][square_frequency_plot_attenuated]
 
-And reassembling the signal from these modified coefficients...
+And reassembling the signal from these modified coefficients produces...
 
 ```python
 modified = sp.bases.fourier.dft(coeffs)
@@ -152,9 +151,9 @@ signal_plot.send(modified)
 
 ![alt text][square_signal_plot_modified]
 
-As you can see, compression through the removal of the independent vectors
-with coefficients between the range of -0.1 and 0.1 has produced a poor
-result. We can do better for signals such as these - using wavelets!
+As you can see, compression by removing the independent vectors with
+coefficients between -0.1 and 0.1 has produced a poor result on the
+square wave. We can do better for signals such as these - using wavelets!
 
 ### Wavelets
 
