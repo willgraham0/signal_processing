@@ -20,7 +20,7 @@ def sum_of_sinusoids(m, n):
     return s
 
 
-def square_1d_signal(m):
+def square_signal(m):
     """Return a 1-dimensional square wave of length 'm'.
     """
     s = np.zeros(m)
@@ -28,22 +28,11 @@ def square_1d_signal(m):
     return s
 
 
-def chequered(m, n, k):
-    """Return a 2-dimensional chequered matrix of dimension (m by n).
+def chequered(m, n, t):
+    """Return a 2-dimensional array (m by n) of black and white
+    chequers of thickness, t.
     """
-    array = np.zeros([m, n], dtype=np.uint8)
-    for x, y in itertools.product(range(n), range(m)):
-        if (x % k) // (k//2) == (y % k) // (k//2):
-            array[y, x] = 0
-        else:
-            array[y, x] = 255
-    return array
-
-
-def chequered2(m, n, t):
-    """An alternative. Return a 2s array of black and white chequers.
-    """
-    s = mp.zeros((m, n))
+    s = np.zeros((m, n))
     mchunks = list(chunks(range(m), t))
     nchunks = list(chunks(range(n), t))
     for i, mchunk in enumerate(mchunks):
