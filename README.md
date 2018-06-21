@@ -103,12 +103,13 @@ dimensions.
 #### The Problem with the Fourier basis
 
 As discussed, the Fourier bases is one that is made up of independent
-vectors that represent different frequencies of sinusoids that all sum
+vectors that represent different frequencies of sinusoids that sum
 to make a signal. In the first example the signal was a sum of 3
 frequencies of sinusoid, which means that only 3 of the 64 independent
-vectors were needed. Some signals, however, are not made up of only 2 or 3
-frequencies but actually all the indepentent vectors that made up the
-space of, in that example, 64 dimensions.
+vectors were needed. Some signals, however, are not made up of such a
+small number of frequencies but actually all the possible frequencies -
+all the possible indepentent vectors that made up the vector space (64
+in that example).
 
 Let's make a square wave, this time of length 100, and plot it.
 
