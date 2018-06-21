@@ -100,7 +100,7 @@ The Fourier transformation can be extended to signals of higher
 dimensions.
 
 
-#### The Problem with the Fourier basis
+#### The Problem with the Fourier Basis
 
 As discussed, the Fourier bases is one that is made up of independent
 vectors that represent different frequencies of sinusoids that sum
