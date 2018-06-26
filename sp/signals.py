@@ -59,6 +59,31 @@ def stripes(m, n, t, vertical=True):
     return s
 
 
+def sinusoids_2d(m, n, f):
+    """Return a 2-dimensional array (m by n) of a sinusoid of amplitude
+    of 1, frequency of f (in radians) and length of m, repeated n numbe
+    of times.
+    """
+    s = np.cos(2*np.pi*f*1/m*np.arange(0, m))
+    return np.tile(s, (n, 1))
+
+
+def horizontal_sinusoids(m, n, f):
+    """Return a 2-dimensional array (m by n) of a sinusoid of amplitude
+    of 1, frequency of f (in radians) and length of m, repeated n numbe
+    of times.
+    """
+    return sinusoids_2d(m, n, f)
+
+
+def vertical_sinusoids(m, n, f):
+    """Return a 2-dimensional array (m by n) of a sinusoid of amplitude
+    of 1, frequency of f (in radians) and length of m, repeated n numbe
+    of times.
+    """
+    return sinusoids_2d(n, m, f).T
+
+
 def chunks(a_list, n):
     """Return ranges of length 'n' along the list provided.
     """

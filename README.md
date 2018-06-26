@@ -68,7 +68,7 @@ the 3 frequencies making up the original signal. All the other values are
 zero.
 
 Therefore, if we were to transmit this signal it would be faster than
-sending the much longer original signal - we are only transmitting small
+sending the much longer original signal - we are only transmitting a small
 vector of the locations and values of the peaks in the plot and reconstructing
 it using the Fourier basis once it has been received.
 
