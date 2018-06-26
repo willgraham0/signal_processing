@@ -97,7 +97,9 @@ signal_plot.send(modified)
 #### Image Frequency Modulation
 
 The Fourier transformation can be extended to signals of higher
-dimensions.
+dimensions. If we consider images as our signal, and perform the (inverse)
+Discrete Fourier Transform on this, we can find the frequencies that make
+up in the image along the two axes. 
 
 
 #### The Problem with the Fourier Basis
