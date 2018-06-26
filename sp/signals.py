@@ -64,11 +64,11 @@ def sinusoids_2d(m, n, f):
     of 1, frequency of f (in radians) and length of m, repeated n numbe
     of times.
     """
-    s = np.cos(2*np.pi*f*1/m*np.arange(0, m))
-    return np.tile(s, (n, 1))
+    s = np.cos(2*np.pi*f*1/m*np.arange(0, m))   
+    return np.tile(s, (n, 1)).T
 
 
-def horizontal_sinusoids(m, n, f):
+def vertical_sinusoids(m, n, f):
     """Return a 2-dimensional array (m by n) of a sinusoid of amplitude
     of 1, frequency of f (in radians) and length of m, repeated n numbe
     of times.
@@ -76,7 +76,7 @@ def horizontal_sinusoids(m, n, f):
     return sinusoids_2d(m, n, f)
 
 
-def vertical_sinusoids(m, n, f):
+def horizontal_sinusoids(m, n, f):
     """Return a 2-dimensional array (m by n) of a sinusoid of amplitude
     of 1, frequency of f (in radians) and length of m, repeated n numbe
     of times.
