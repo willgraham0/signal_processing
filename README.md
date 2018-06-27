@@ -150,10 +150,10 @@ image (in both directions) that we know to exist.
 
 ```python
 # Vertically
-coeffs[5:0] = 0
-coeffs[100-5:0] = 0
+coeffs[5, 0] = 0
+coeffs[100-5, 0] = 0
 # Horizontally
-coeffs[0:5] = 0
+coeffs[0, 5] = 0
 coeefs[0, 100-5] = 0
 sp.plotting.plot(coeffs)
 ```
