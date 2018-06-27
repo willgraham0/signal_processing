@@ -67,12 +67,13 @@ basis. We ignore the symmetry and ackowledge that there are 3 peaks for
 the 3 frequencies making up the original signal. All the other values are
 zero.
 
-Therefore, if we were to transmit this signal it would be faster than
-sending the much longer original signal - we are only transmitting a small
-vector of the locations and values of the peaks in the plot and reconstructing
-it using the Fourier basis once it has been received.
+Therefore, if we were to transmit this signal of three sinusoids, it would
+be faster to send a small vector of the locations and values of the peaks
+in the frequency plot (which we have in the _coeffs_ variable) and
+reconstructing it using the Fourier basis once it has been received 
+than to send the much longer original signal.
 
-We could also remove the frequencies that we believe are unwanted and 
+Additionally, we could remove frequencies that we believe are unwanted and 
 reconstruct the signal without these components. Let's do that below for
 the frequencies that have values between 5 and 10, using numpy.
 
