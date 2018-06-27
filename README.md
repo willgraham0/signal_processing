@@ -95,16 +95,16 @@ signal_plot.send(modified)
 
 ![alt text][fourier_signal_plot_modified]
 
-#### Image Frequency Modulation
+#### Fourier Transformation of Images
 
 The Fourier transformation can be extended to signals of higher
 dimensions. If we consider images as our signal and perform the (inverse)
-Discrete Fourier Transform on this, we can find the frequencies that make
-up in the image along the two axes.
+Discrete Fourier Transform on this we can find the frequencies that make
+up in the image along its two axes.
 
 Let's make an image consisting of two 2-dimenisonal sinusoids of two
 frequencies in the horizontal direction and two 2-dimensional sinusoids
-of two frequencies in the vertical direction and visualise it.
+of two frequencies in the vertical direction and then visualise it.
 
 Note:
 Horizontal sinusoids means that the sinusoid rotates horizontally, i.e.
@@ -132,11 +132,36 @@ plot the 2d array of Fourier coefficients.
 
 ```python
 coeffs = sp.bases.fourier.idft2(signal)
-frequency_plot = sp.plotting.plot(coeffs)
+sp.plotting.plot(coeffs)
 ```
 
 ![alt text][fourier_frequency_plot_2d]
 
+In the top left of the frequency plot above, we can see four black points.
+These represent the four frequencies that make up the image (two in the
+horizontal direction at 2 and 5 and two in the vertical direction at 2
+and 5). As before, we have symmetry about the centre of the image along
+both axes due to the complex nature of the Fourier bases.
+
+Again, we can remove frequencies that we believe are noise but this time,
+instead of removing those that contribute least to the image (i.e. have
+small coefficients), we will remove the higher frequency components of the
+image (in both directions) that we know to exist. 
+
+```python
+# Vertically
+coeffs[5:0] = 0
+coeffs[100-5:0] = 0
+# Horizontally
+coeffs[0:5] = 0
+coeefs[0, 100-5] = 0
+sp.plotting.plot(coeffs)
+```
+
+![alt text][fourier_frequency_plot_2d_attenuated]
+
+
+#### Image Frequency Modulation
 
 #### The Problem with the Fourier Basis
 
@@ -205,6 +230,7 @@ square wave. We can do better for signals such as these - using wavelets!
 [fourier_signal_plot_modified]: images/fourier_signal_plot_modified.png "fourier_signal_plot_modified"
 [fourier_signal_plot_2d]: images/fourier_signal_plot_2d.png "fourier_signal_plot_2d"
 [fourier_frequency_plot_2d]: images/fourier_frequency_plot_2d.png "fourier_frequency_plot_2d"
+[fourier_frequency_plot_2d_attenuated]: images/fourier_frequency_plot_2d_attenuated.png "fourier_frequency_plot_2d_attenuated"
 
 [square_signal_plot]: images/square_signal_plot.png "square_signal_plot"
 [square_frequency_plot]: images/square_frequency_plot.png "square_frequency_plot"
