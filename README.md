@@ -99,7 +99,26 @@ signal_plot.send(modified)
 The Fourier transformation can be extended to signals of higher
 dimensions. If we consider images as our signal, and perform the (inverse)
 Discrete Fourier Transform on this, we can find the frequencies that make
-up in the image along the two axes. 
+up in the image along the two axes.
+
+Let's make an image made up of two 2-dimenisonal sinusoids of two
+frequencies in the horizontal direction and two 2-dimensional sinusoids
+of two frequencies in the vertical direction and visualise it.
+
+Note:
+Horizontal sinusoids means that the sinusoid rotates horizontally, i.e.
+vertical stripes will appear in the 2-d image.
+
+```python
+horiz_low = sp.signals.horizontal_sinusoids(100, 100, 2)
+horiz_high = sp.signals.horizontal_sinusoids(100, 100, 5)
+vert_low = sp.signals.vertical_sinusoids(100, 100, 2)
+vert_high = sp.signals.vertical_sinusoids(100, 100, 5)
+sig = horiz_low + horiz_high + vert_low + vert_high
+sp.plotting.plot(sig)
+```
+
+![alt text][fourier_signal_plot_2d]
 
 
 #### The Problem with the Fourier Basis
@@ -167,6 +186,8 @@ square wave. We can do better for signals such as these - using wavelets!
 [fourier_frequency_plot]: images/fourier_frequency_plot.png "fourier_frequency_plot"
 [fourier_frequency_plot_attenuated]: images/fourier_frequency_plot_attenuated.png "fourier_frequency_plot_attenuated"
 [fourier_signal_plot_modified]: images/fourier_signal_plot_modified.png "fourier_signal_plot_modified"
+[fourier_signal_plot_2d]: images/fourier_signal_plot_2d.png "fourier_signal_plot_2d"
+
 [square_signal_plot]: images/square_signal_plot.png "square_signal_plot"
 [square_frequency_plot]: images/square_frequency_plot.png "square_frequency_plot"
 [square_frequency_plot_attenuated]: images/square_frequency_plot_attenuated.png "square_frequency_plot_attenuated"
