@@ -24,7 +24,7 @@ basis.
 ### Fourier
 
 The Fourier transform involves changing our signal into a linear
-combination of independent vectors that each represent a different
+combination of independent vectors that each represents a different
 frequency of sinusoid that makes up the signal. The extent to which each
 frequency contributes to the overall signal is provided by the coefficient
 of each independent vector.
