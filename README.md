@@ -97,11 +97,11 @@ signal_plot.send(modified)
 #### Image Frequency Modulation
 
 The Fourier transformation can be extended to signals of higher
-dimensions. If we consider images as our signal, and perform the (inverse)
+dimensions. If we consider images as our signal and perform the (inverse)
 Discrete Fourier Transform on this, we can find the frequencies that make
 up in the image along the two axes.
 
-Let's make an image made up of two 2-dimenisonal sinusoids of two
+Let's make an image consisting of two 2-dimenisonal sinusoids of two
 frequencies in the horizontal direction and two 2-dimensional sinusoids
 of two frequencies in the vertical direction and visualise it.
 
@@ -110,15 +110,31 @@ Horizontal sinusoids means that the sinusoid rotates horizontally, i.e.
 vertical stripes will appear in the 2-d image.
 
 ```python
+# Horizontal sinosoids of 2 rads/sec (low freq)
 horiz_low = sp.signals.horizontal_sinusoids(100, 100, 2)
+# Horizontal sinosoids of 5 rads/sec (high freq)
 horiz_high = sp.signals.horizontal_sinusoids(100, 100, 5)
+# Vertical sinosoids of 2 rads/sec (low freq)
 vert_low = sp.signals.vertical_sinusoids(100, 100, 2)
+# Vertical sinosoids of 5 rads/sec (high freq)
 vert_high = sp.signals.vertical_sinusoids(100, 100, 5)
-sig = horiz_low + horiz_high + vert_low + vert_high
-sp.plotting.plot(sig)
+# Add all together to make the signal
+signal = horiz_low + horiz_high + vert_low + vert_high
+sp.plotting.plot(signal)
 ```
 
 ![alt text][fourier_signal_plot_2d]
+
+Now perform the inverse 2-d Discete Fourier Transform on the image and
+plot the 2d array of Fourier coefficients.
+
+
+```python
+coeffs = sp.bases.fourier.idft2(signal)
+frequency_plot = sp.plotting.plot(coeffs)
+```
+
+![alt text][fourier_frequency_plot_2d]
 
 
 #### The Problem with the Fourier Basis
