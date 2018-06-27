@@ -70,8 +70,8 @@ zero.
 Therefore, if we were to transmit this signal of three sinusoids, it would
 be faster to send a small vector of the locations and values of the peaks
 in the frequency plot (which we have in the _coeffs_ variable) and
-reconstructing it using the Fourier basis once it has been received 
-than to send the much longer original signal.
+reconstruct it using the Fourier basis once it has been received 
+than it is to send the much longer original signal.
 
 Additionally, we could remove frequencies that we believe are unwanted and 
 reconstruct the signal without these components. Let's do that below for
