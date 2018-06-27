@@ -52,6 +52,20 @@ class FourierTests(unittest.TestCase):
         np.testing.assert_almost_equal(diag_fmatrix.conj().T, idiag_fmatrix)        
 
 
+    def test_dimensionality_correct(self):
+        """Test if ValueError is raised if a 1-dimensional signal is 
+        passed to dft2 or idft2 and if a 2-dimensional signal is passed 
+        to dft or idft. 
+        """
+        one_dimen = np.random.rand(50)
+        two_dimen = np.random.rand(50, 50)
+        with self.assertRaises(ValueError):
+            bases.fourier.idft(two_dimen)
+            bases.fourier.dft(two_dimen)
+            bases.fourier.idft2(one_dimen)
+            bases.fourier.dft2(one_dimen)
+
+
 class HaarTests(unittest.TestCase):
     """Test cases for the Haar basis.
     """

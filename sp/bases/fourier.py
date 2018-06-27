@@ -10,12 +10,18 @@ import numpy as np
 def idft(signal):
     """Return the Fourier coefficients of a 1-dimensional signal.
     """
+    shape = signal.shape
+    if len(shape) != 1:
+        raise ValueError('Signal is not 1-dimensional.')
     return ifourier_matrix(len(signal)).dot(signal)
 
 
 def dft(coefficients):
     """Return the 1-dimensional signal from its Fourier coefficients.
     """
+    shape = coefficients.shape
+    if len(shape) != 1:
+        raise ValueError('Signal is not 1-dimensional.')
     return fourier_matrix(len(coefficients)).dot(coefficients)
 
 
@@ -29,13 +35,19 @@ def fft(coefficients):
 def idft2(signal):
     """Return the Fourier coefficients of a 2-dimensional signal.
     """
-    rows, cols = signal.shape
+    shape = signal.shape
+    if len(shape) != 2:
+        raise ValueError('Signal is not 2-dimensional.')
+    rows, cols = shape
     return ifourier_matrix(rows).dot(signal.dot(ifourier_matrix(cols)))
 
 
 def dft2(coefficients):
     """Return the 2-dimensional signal from its Fourier coefficients."""
-    rows, cols = coefficients.shape
+    shape = coefficients.shape
+    if len(shape) != 2:
+        raise ValueError('Signal is not 2-dimensional.')
+    rows, cols = shape
     return fourier_matrix(rows).dot(coefficients.dot(fourier_matrix(cols)))
 
 
