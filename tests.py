@@ -201,6 +201,22 @@ class GeneralTests(unittest.TestCase):
             bases.wavelets.get_family('Crazy')
 
 
+class SignalsTests(unittest.TestCase):
+    """Test cases for signals functionality.
+    """
+
+    def test_signals_dimensions(self):
+        """Test that the signals have the correct dimensionality.
+        """
+        self.assertEqual(signals.sum_of_sinusoids(30, 2).shape, (30,))
+        self.assertEqual(signals.square_signal(30).shape, (30,))
+        self.assertEqual(signals.chequered(50, 30, 2).shape, (50, 30))
+        self.assertEqual(signals.stripes(50, 30, 2).shape, (50, 30))
+        self.assertEqual(signals.sinusoids_2d(20, 100, 2).shape, (20, 100))
+        self.assertEqual(signals.vertical_sinusoids(20, 100, 2).shape, (20, 100))
+        self.assertEqual(signals.horizontal_sinusoids(20, 100, 2).shape, (20, 100))
+
+
 if __name__ == "__main__":
     unittest.main()
     
