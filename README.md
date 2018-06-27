@@ -203,6 +203,7 @@ square wave. We can do better for signals such as these - using wavelets!
 [fourier_frequency_plot_attenuated]: images/fourier_frequency_plot_attenuated.png "fourier_frequency_plot_attenuated"
 [fourier_signal_plot_modified]: images/fourier_signal_plot_modified.png "fourier_signal_plot_modified"
 [fourier_signal_plot_2d]: images/fourier_signal_plot_2d.png "fourier_signal_plot_2d"
+[fourier_frequency_plot_2d]: images/fourier_frequency_plot_2d.png "fourier_frequency_plot_2d"
 
 [square_signal_plot]: images/square_signal_plot.png "square_signal_plot"
 [square_frequency_plot]: images/square_frequency_plot.png "square_frequency_plot"
