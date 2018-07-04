@@ -102,7 +102,7 @@ dimensions. If we consider images as our signal and perform the (inverse)
 Discrete Fourier Transform on this we can find the frequencies that make
 up in the image along its two axes.
 
-Let's make an image consisting of two 2-dimenisonal sinusoids of two
+Let's make a 100x100 image consisting of two 2-dimenisonal sinusoids of two
 frequencies in the horizontal direction and two 2-dimensional sinusoids
 of two frequencies in the vertical direction and then visualise it.
 
