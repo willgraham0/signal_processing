@@ -174,6 +174,8 @@ sp.plotting.plot(modified)
 
 #### Image Frequency Modulation
 
+To be completed...
+
 #### The Problem with the Fourier Basis
 
 As discussed, the Fourier bases is one that is made up of independent
