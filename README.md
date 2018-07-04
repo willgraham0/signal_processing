@@ -114,9 +114,11 @@ vertical stripes will appear in the 2-d image.
 # Horizontal sinosoids of low (2 rads/sec) and high (5 rads/sec) freqency)
 horiz_low = sp.signals.horizontal_sinusoids(100, 100, 2)
 horiz_high = sp.signals.horizontal_sinusoids(100, 100, 5)
+
 # Vertical sinosoids of low (2 rads/sec) and high (5 rads/sec) freqency)
 vert_low = sp.signals.vertical_sinusoids(100, 100, 2)
 vert_high = sp.signals.vertical_sinusoids(100, 100, 5)
+
 # Add all together to make the signal
 signal = horiz_low + horiz_high + vert_low + vert_high
 sp.plotting.plot(signal)
