@@ -111,13 +111,11 @@ Horizontal sinusoids means that the sinusoid rotates horizontally, i.e.
 vertical stripes will appear in the 2-d image.
 
 ```python
-# Horizontal sinosoids of 2 rads/sec (low freq)
+# Horizontal sinosoids of low (2 rads/sec) and high (5 rads/sec) freqency)
 horiz_low = sp.signals.horizontal_sinusoids(100, 100, 2)
-# Horizontal sinosoids of 5 rads/sec (high freq)
 horiz_high = sp.signals.horizontal_sinusoids(100, 100, 5)
-# Vertical sinosoids of 2 rads/sec (low freq)
+# Vertical sinosoids of low (2 rads/sec) and high (5 rads/sec) freqency)
 vert_low = sp.signals.vertical_sinusoids(100, 100, 2)
-# Vertical sinosoids of 5 rads/sec (high freq)
 vert_high = sp.signals.vertical_sinusoids(100, 100, 5)
 # Add all together to make the signal
 signal = horiz_low + horiz_high + vert_low + vert_high
@@ -154,11 +152,21 @@ coeffs[5, 0] = 0
 coeffs[100-5, 0] = 0
 # Horizontally
 coeffs[0, 5] = 0
-coeefs[0, 100-5] = 0
+coeffs[0, 100-5] = 0
 sp.plotting.plot(coeffs)
 ```
 
 ![alt text][fourier_frequency_plot_2d_attenuated]
+
+And apply the 2-dimensional Discret Fourier Transform to the modified
+coefficients to reconstruct the signal without these frequencies and plot.
+
+```python
+modified = sp.bases.fourier.dft(coeffs)
+sp.plotting.plot(modified)
+```
+
+![alt text][fourier_signal_plot_2d_modified]
 
 
 #### Image Frequency Modulation
@@ -231,7 +239,7 @@ square wave. We can do better for signals such as these - using wavelets!
 [fourier_signal_plot_2d]: images/fourier_signal_plot_2d.png "fourier_signal_plot_2d"
 [fourier_frequency_plot_2d]: images/fourier_frequency_plot_2d.png "fourier_frequency_plot_2d"
 [fourier_frequency_plot_2d_attenuated]: images/fourier_frequency_plot_2d_attenuated.png "fourier_frequency_plot_2d_attenuated"
-
+[fourier_signal_plot_2d_modified]: images/fourier_signal_plot_2d_modified.png "fourier_signal_plot_2d_modified"
 [square_signal_plot]: images/square_signal_plot.png "square_signal_plot"
 [square_frequency_plot]: images/square_frequency_plot.png "square_frequency_plot"
 [square_frequency_plot_attenuated]: images/square_frequency_plot_attenuated.png "square_frequency_plot_attenuated"
