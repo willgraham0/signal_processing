@@ -3,20 +3,18 @@
 
 
 import numpy as np
-import random
 import itertools
 
 
-def sum_of_sinusoids(m, n):
-    """Return a 1-dimensional signal comprised of 'n' cosines of
-    length 'm' with amplitude between 1 and 10 and frequency between
-    2*pi*1 and 2*pi*10.
+def sum_of_sinusoids(m, amps_freqs):
+    """Return a 1-dimensional signal comprised of a sum of cosines.
+    The variable amps_freqs is a list of lists of amplitude and frequency
+    (in radians) for each cosine. Therefore the length of amsp_freqs is 
+    the number of cosines being summed.
     """
-    amp = 10
-    freq = m
-    s = random.randint(1, amp)*np.cos(2*np.pi*random.randint(1, freq)*1/m*np.arange(0, m))
-    for _ in range(n-1):
-        s = s + random.randint(1, amp)*np.cos(2*np.pi*random.randint(1, freq)*1/m*np.arange(0, m))
+    s = np.zeros(m)
+    for amp, freq in amps_freqs:
+        s = s + amp*np.cos(2*np.pi*freq*1/m*np.arange(0, m))
     return s
 
 

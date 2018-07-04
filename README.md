@@ -32,11 +32,11 @@ of each independent vector.
 #### A Simple Fourier Transformation
 
 Let us create a signal of length 64 that is formed of 3 sinusoids
-of random frequency and amplitude.
+of amplitudes, 3, 8 and 2, and frequencies, 17, 26 and 29.
 
 ```python
 import sp
-signal = sp.signals.sum_of_sinusoids(64, 3)
+signal = sp.signals.sum_of_sinusoids(64, [[3, 17], [8, 26], [2, 29]])
 ```
 
 We can then plot this signal to see what it looks like.
