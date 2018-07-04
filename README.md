@@ -236,6 +236,7 @@ square wave. We can do better for signals such as these - using wavelets!
 
 #### Haar 
 
+To be completed...
 
 [fourier_signal_plot]: images/fourier_signal_plot.png "fourier_signal_plot"
 [fourier_frequency_plot]: images/fourier_frequency_plot.png "fourier_frequency_plot"
