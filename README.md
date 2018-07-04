@@ -159,7 +159,8 @@ sp.plotting.plot(coeffs)
 ![alt text][fourier_frequency_plot_2d_attenuated]
 
 And apply the 2-dimensional Discret Fourier Transform to the modified
-coefficients to reconstruct the signal without these frequencies and plot.
+coefficients to reconstruct the signal without these high frequencies
+and plot.
 
 ```python
 modified = sp.bases.fourier.dft(coeffs)
