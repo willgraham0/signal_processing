@@ -17,9 +17,12 @@ is to find the most suitable basis that allows us to compress the signal
 or remove noise without too badly degrading the quality of the signal.
 
 The best bases are orthogonal as their inverses are simply the transpose
-(or complex conjugate transpose) of the matrix containing them. The two
-that I have so far considered are the Fourier basis and the Haar wavelet
-basis.
+(or complex conjugate transpose) of the matrix containing them. This means
+that the transformation of the signal into its combination of independent
+vectors can be reversed by the use of this transposed basis matrix.
+
+The two that I have so far considered are the Fourier basis and the Haar
+wavelet basis.
 
 ### Fourier
 
