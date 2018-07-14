@@ -233,7 +233,8 @@ signal_plot.send(modified)
 
 As you can see, compression by removing the independent vectors with
 coefficients between -0.1 and 0.1 has produced a poor result on the
-square wave. We can do better for signals such as these - using wavelets!
+square wave. We can do better for signals such as these by using better
+bases. These alternative bases are called wavelets!
 
 ### Wavelets
 
