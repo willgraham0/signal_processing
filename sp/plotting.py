@@ -30,6 +30,7 @@ def plot(signal, grid=False):
     dimensions = len(signal.shape)
     ax = fig.add_subplot(1, 1, 1)
     ax.grid(grid)
+    first = True
     while True:
         if len(signal.shape) == dimensions:
             if signal.dtype == np.complex128:
@@ -39,11 +40,13 @@ def plot(signal, grid=False):
                 ax.set_ylabel('Value')
                 ax.plot(np.arange(len(signal)), signal)
             if dimensions == 2:
-                n = len(fig.axes)
-                if n > 1:
+                if first:
+                    first = False
+                else:
+                    n = len(fig.axes)
                     for i in range(n):
-                        fig.axes[i].change_geometry(n+1, 1, i+1)
-                    ax = fig.add_subplot(n+1, 1, n+1)
+                        fig.axes[i].change_geometry(1, n+1, i+1)
+                    ax = fig.add_subplot(1, n+1, n+1)
                 ax.imshow(signal, cmap='Greys')
             fig.canvas.draw()
         else:
