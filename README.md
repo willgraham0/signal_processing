@@ -280,7 +280,7 @@ array([[ 0.5  ,  0.5  ,  0.707,  0.   ],
        [ 0.5  , -0.5  ,  0.   , -0.707]])
 ```
 
-Each column, except for column 0, is the single, complete square wave
+Each column, except for Column 0, is the single, complete square wave
 that has been dilated, translated or both. Column 1 is the original
 square wave. Column 2 is a dilated (squashed) square wave located over
 the first half of the signal. Column 3 is a square wave that has the
@@ -333,7 +333,7 @@ array([2.828, 2.828, 0.   , 0.   , 0.   , 0.   , 0.   , 1.414])
 If we were to transmit this signal we would only need to transmit the 3
 non-zero coefficients and their positions i.e. which wavelet (dilation/
 translation combination) they correspond to and reconstuct it at the
-other end using the Discrete Haar Wavelet Transform. 
+receiving end using the Discrete Haar Wavelet Transform. 
 
 Now let's take a random signal and visualise the contribution of each
 Haar wavelet to the total signal.  
@@ -349,12 +349,50 @@ sp.plotting.plot_wavelet_heatmap(signal, 'Haar')
 
 ![alt text][haar_heatmap]
 
+The plot above is a heatmap of: 
+1. dimension on the vertical axis (where we are in a signal);
+2. frequency on the horizontal axis (the dilations of the Haar wavelet), and;
+3. the amplitude or contribution to the total signal. 
+
+The value of each dimension in the signal is the horizontal sum of the
+amplitudes across all dilations. E.g. The first value of the signal is 2
+and this is equal to: 4.75 - 1.5 - 1.75 + 0.5.
+
+What can be seen is that the wavelets represented by columns 6, 7 and 9
+of the 8x8 Haar matrix contribute the least to the signal with values
+less than or equal to plus/minus 0.25. 
+
 ##### The Benefits of the Haar Wavelet Basis.
 
+At the end of the section on the Fourier Transform we created a square
+wave signal of length 100. We showed that if we transform this signal
+using the Fourier basis we get no coefficients that are equal to zero.
+This means that all the independent vectors that make up the Fourier
+basis are needed to fully represent the signal, namely, we cannot
+losslessly compress the signal. 
+
+If we set the least contributing vectors to zero (the vectors that have
+the smallest coefficients), transmit the other coefficients and their
+positions, and try to reconstruct the signal at the receiving end, we
+get significant distortion or ringing. 
+
+This is where the use of the Haar basis is ideal. We will construct a
+similar square wave signal (of length 128 instead of 100) and calculate
+its coefficients using the Haar wavelet basis.
+
 ```python
-square = sp.signals.square_signal(100)
-signal_plot = sp.plotting.plot(square, grid=True)
+square = sp.signals.square_signal(128)
+coeffs = sp.bases.wavelets.idwt(square, 'Haar')
+sp.plotting.plot(coeffs, grid=True)
 ```
+
+![alt text][haar_frequency_plot]
+
+What we can see is that there are only 6 independent vectors out of 128
+of the Haar basis that contribute to the square wave signal as opposed
+to all the independent vectors of the Fourier basis. This means only 6
+coefficients and their positions need to be transmitted for
+recontruction. This is a huge lossless compression ratio.  
 
 [fourier_signal_plot]: images/fourier_signal_plot.png "fourier_signal_plot"
 [fourier_frequency_plot]: images/fourier_frequency_plot.png "fourier_frequency_plot"
@@ -369,3 +407,4 @@ signal_plot = sp.plotting.plot(square, grid=True)
 [square_frequency_plot_attenuated]: images/square_frequency_plot_attenuated.png "square_frequency_plot_attenuated"
 [square_signal_plot_modified]: images/square_signal_plot_modified.png "square_signal_plot_modified"
 [haar_heatmap]: images/haar_heatmap.png "haar_heatmap"
+[haar_frequency_plot]: images/haar_frequency_plot.png "haar_frequency_plot"
