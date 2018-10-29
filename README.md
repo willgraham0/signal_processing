@@ -254,13 +254,25 @@ of each independent vector.
 
 There are a number of different wavelet bases and the selection of one
 of them, including the selection of wavelets over the Fourier basis,
-depends on what you are trying to achieve, for example, signal
-compression, and the characteristics of your signal. We will discuss
+depends on what you are trying to achieve (for example, signal
+compression) and the characteristics of your signal. We will discuss
 this here. 
 
 #### Haar 
 
-To be completed...
+Haar wavelets are the simplest of the wavelets.
+
+The orthonormal 4x4 Haar wavelet matrix is:
+
+```python
+haar_matrix = sp.bases.wavelets.Haar.matrix(4)
+
+>>> haar_matrix
+array([[ 0.5       ,  0.5       ,  0.70710678,  0.        ],
+       [ 0.5       ,  0.5       , -0.70710678,  0.        ],
+       [ 0.5       , -0.5       ,  0.        ,  0.70710678],
+       [ 0.5       , -0.5       ,  0.        , -0.70710678]])
+```
 
 [fourier_signal_plot]: images/fourier_signal_plot.png "fourier_signal_plot"
 [fourier_frequency_plot]: images/fourier_frequency_plot.png "fourier_frequency_plot"
