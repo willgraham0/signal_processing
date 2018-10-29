@@ -291,7 +291,7 @@ The more the square wave is dilated (squashed) the more it represents a
 signal of a higher frequency. The translation represents where that
 signal of higher frequency acts. Again, like a piece of music, the
 dilation represents the vertical position of the notes on the staff and
-the translation represents the where the notes should be played in time -
+the translation represents where the notes should be played in time -
 the horizontal position. 
 
 Let's see some examples. First, we will create a flat, dc, signal that
@@ -307,7 +307,7 @@ array([2.828, 0.  , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ])
 
 What the coefficients are telling us is that it is only column 0 of the
 8x8 Haar matrix that is contributing to the signal, which is exactly
-what we would expect. Now, lets add a square wave onto the dc signal
+what we would expect. Now, let's add a square wave onto the dc signal
 and perform the transform again.
 
 ```python
@@ -330,13 +330,14 @@ coeffs = sp.bases.wavelets.idwt(signal, 'Haar')
 array([2.828, 2.828, 0.   , 0.   , 0.   , 0.   , 0.   , 1.414])
 ```
 
-If we were to transmit this signal we would only need to transmit the 3
-non-zero coefficients and their positions i.e. which wavelet (dilation/
-translation combination) they correspond to and reconstuct it at the
-receiving end using the Discrete Haar Wavelet Transform. 
+And this is what we find. If we were to transmit this signal we would
+only need to transmit the 3 non-zero coefficients and their positions
+i.e. which wavelet (dilation/translation combination) they correspond to
+and reconstuct it at the receiving end using the Discrete Haar Wavelet
+Transform. 
 
-Now let's take a random signal and visualise the contribution of each
-Haar wavelet to the total signal.  
+Let's take a random signal and visualise the contribution of each Haar
+wavelet to the total signal.  
 
 ```python
 signal = np.random.randint(0, 10, size=8)
@@ -350,17 +351,17 @@ sp.plotting.plot_wavelet_heatmap(signal, 'Haar')
 ![alt text][haar_heatmap]
 
 The plot above is a heatmap of: 
-1. dimension on the vertical axis (where we are in a signal);
-2. frequency on the horizontal axis (the dilations of the Haar wavelet), and;
-3. the amplitude or contribution to the total signal. 
+1. Dimension on the vertical axis (where we are in the signal);
+2. Frequency on the horizontal axis (the dilations of the Haar wavelet), and;
+3. Amplitude or contribution to the total signal. 
 
 The value of each dimension in the signal is the horizontal sum of the
 amplitudes across all dilations. E.g. The first value of the signal is 2
 and this is equal to: 4.75 - 1.5 - 1.75 + 0.5.
 
 What can be seen is that the wavelets represented by columns 6, 7 and 9
-of the 8x8 Haar matrix contribute the least to the signal with values
-less than or equal to plus/minus 0.25. 
+of the 8x8 Haar matrix contribute the least to the signal with
+magnitudes less than or equal to 0.25. 
 
 #### The Benefits of the Haar Wavelet Basis.
 
@@ -368,8 +369,8 @@ At the end of the section on the Fourier Transform we created a square
 wave signal of length 100. We showed that if we transform this signal
 using the Fourier basis we get no coefficients that are equal to zero.
 This means that all the independent vectors that make up the Fourier
-basis are needed to fully represent the signal, namely, we cannot
-losslessly compress the signal. 
+basis are needed to fully represent the signal - we cannot losslessly
+compress the signal. 
 
 If we set the least contributing vectors to zero (the vectors that have
 the smallest coefficients), transmit the other coefficients and their
@@ -388,24 +389,25 @@ sp.plotting.plot(coeffs, grid=True)
 
 ![alt text][haar_frequency_plot]
 
-What we can see is that there are only 6 independent vectors out of 128
-of the Haar basis that contribute to the square wave signal as opposed
-to all of the independent vectors of the Fourier basis. This means only
-6 coefficients and their positions need to be transmitted for
-recontruction. This is a huge lossless compression ratio.  
+What we can see is that there are only 6 independent vectors out of the
+128 of the Haar basis that contribute to the square wave signal, or
+4.7%. This is in contrast to 100% of the independent vectors of the
+Fourier basis that are needed. This means only 6 coefficients and their
+positions need to be transmitted for recontruction. This is a huge
+lossless compression ratio of 128/(6 x 6) = 3.6:1.  
 
 ## Conclusion
 
 Signals can be thought of as vectors lying within a vector space.
 Different bases that span this vector space can be used to break the
 signal up into linearly combining components. Depending on the basis
-chosen and the characteristics of signal being studied, this can lead to
-components of the basis that do not contribute at all to the signal. 
+chosen and the characteristics of the signal being studied, this can
+lead to components of the basis not contributing to the signal at all.
 
 This fact can then be used to reduce the amount of information needed to
-describe the signal and, in particular, to transmit it. If the receiver
-knows the basis used for the transformation, the reverse can be
-performed relatively easily.
+describe the signal and transmit it. If the receiver knows the basis
+used for the transformation, the reverse can be performed relatively
+easily.
 
 For smooth, gently changing signals, the Fourier Transformation is
 ideal. For sharp, rapidly changing signals, Wavelet Transformations are
