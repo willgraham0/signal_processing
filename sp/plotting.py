@@ -1,11 +1,14 @@
 """This module provides functionality for plotting signals and their
-transformations into other bases."""
+transformations into other bases.
+"""
 
 
-import numpy as np
 import itertools
+
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as path_effects
+import numpy as np
+
 from . import bases
 
 

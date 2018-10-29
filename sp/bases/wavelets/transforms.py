@@ -3,13 +3,14 @@ and 2-dimenional signals into the wavelet domain and back into the
 functional domain.
 """
 
-from .families import Wavelets, Haar
+
 import numpy as np
+
+from .families import Wavelets, Haar
 
 
 def is_implemented(family):
-    """Return True if the wavelet family is implemented. Else False.
-    """
+    """Return True if the wavelet family is implemented. Else False."""
     if family in Wavelets.families.keys():
         return True
     else:
@@ -26,23 +27,20 @@ def get_family(family):
 
 
 def idwt(signal, family):
-    """Return the Wavelet coefficients of a 1-dimensional signal.
-    """
+    """Return the Wavelet coefficients of a 1-dimensional signal."""
     Family = get_family(family)
     return Family.imatrix(len(signal)).dot(signal)
 
 
 def idwt2(signal, family):
-    """Return the Wavelet coefficients of a 2-dimensional signal.
-    """
+    """Return the Wavelet coefficients of a 2-dimensional signal."""
     rows, cols = signal.shape
     Family = get_family(family)
     return Family.imatrix(rows).dot(signal.dot(Family.imatrix(cols)))
 
 
 def dwt(coefficients, family):
-    """Return the 1-dimensional signal from its Wavelet coefficients.
-    """
+    """Return the 1-dimensional signal from its Wavelet coefficients."""
     Family = get_family(family)
     return Family.matrix(len(coefficients)).dot(coefficients)
 
@@ -51,7 +49,8 @@ def heatmap_matrix(signal, family):
     """Return a 2-dimensional array of the wavelet matrix, with each
     wavelet scaled by its corresponding coefficient (its amplitude) and
     compressed (so that the number of columns equals the number of
-    dilations) for a 1-dimensional signal."""
+    dilations) for a 1-dimensional signal.
+    """
     Family = get_family(family)
     wavelet_matrix = Family.matrix(len(signal))
     coefficients = idwt(signal, family)

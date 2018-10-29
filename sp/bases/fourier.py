@@ -8,8 +8,7 @@ import numpy as np
 
 
 def idft(signal):
-    """Return the Fourier coefficients of a 1-dimensional signal.
-    """
+    """Return the Fourier coefficients of a 1-dimensional signal."""
     shape = signal.shape
     if len(shape) != 1:
         raise ValueError('Signal is not 1-dimensional.')
@@ -17,8 +16,7 @@ def idft(signal):
 
 
 def dft(coefficients):
-    """Return the 1-dimensional signal from its Fourier coefficients.
-    """
+    """Return the 1-dimensional signal from its Fourier coefficients."""
     shape = coefficients.shape
     if len(shape) != 1:
         raise ValueError('Signal is not 1-dimensional.')
@@ -28,13 +26,12 @@ def dft(coefficients):
 def fft(coefficients):
     """Return the 1-dimensional signal from its Fourier coefficients
     using the Fast Fourier Transform algorithm.
-    TO BE IMPLEMENTED"""
-    pass
+    """
+    raise NotImplementedError()
 
 
 def idft2(signal):
-    """Return the Fourier coefficients of a 2-dimensional signal.
-    """
+    """Return the Fourier coefficients of a 2-dimensional signal."""
     shape = signal.shape
     if len(shape) != 2:
         raise ValueError('Signal is not 2-dimensional.')
@@ -70,16 +67,14 @@ def ifourier_matrix(m):
 
 
 def diagonal(m):
-    """Return the diagonal matrix of the Fourier matrix.
-    """
+    """Return the diagonal matrix of the Fourier matrix."""
     j = np.arange(m)
     omega = np.exp(-2*np.pi*1j/m)
     return np.diag(np.power(omega, j))
 
 
 def idiagonal(m):
-    """Return the diagonal matrix of the inverse Fourier matrix.
-    """
+    """Return the diagonal matrix of the inverse Fourier matrix."""
     j = np.arange(m)
     omega = np.exp(2*np.pi*1j/m)
     return np.diag(np.power(omega, j))

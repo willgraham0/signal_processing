@@ -1,9 +1,11 @@
 """This module provides the functionality to generate interesting
-1-dimensional and 2-dimensional signals for the purposes of analysis."""
+1-dimensional and 2-dimensional signals for the purposes of analysis.
+"""
 
+
+import itertools
 
 import numpy as np
-import itertools
 
 
 def sum_of_sinusoids(m, amps_freqs):
@@ -14,7 +16,7 @@ def sum_of_sinusoids(m, amps_freqs):
     """
     s = np.zeros(m)
     for amp, freq in amps_freqs:
-        s = s + amp*np.cos(2*np.pi*freq*1/m*np.arange(0, m))
+        s += amp*np.cos(2*np.pi*freq*1/m*np.arange(0, m))
     return s
 
 

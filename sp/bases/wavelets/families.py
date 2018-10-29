@@ -2,12 +2,12 @@
 wavelets.
 """
 
+
 import numpy as np
 
 
 class Wavelets(type):
-    """A metaclass to encapsulate all the families of wavelets.
-    """
+    """A metaclass to encapsulate all the families of wavelets."""
     
     families = {}
     def __init__(cls, name, bases, attrs):
@@ -18,8 +18,7 @@ class Wavelets(type):
 
 
 class Haar(metaclass=Wavelets):
-    """The Haar family of wavelets.
-    """
+    """The Haar family of wavelets."""
 
     @staticmethod
     def wavelet(k, m):
@@ -39,7 +38,6 @@ class Haar(metaclass=Wavelets):
             x = np.sin(np.linspace(0, 2*np.pi, k))
             s = np.piecewise(x, [x < 0, x >= 0], [-1, 1])
             return (1/np.sqrt(k))*np.append(s, np.zeros(m - k))
-
 
     @staticmethod
     def matrix(m):
@@ -61,7 +59,6 @@ class Haar(metaclass=Wavelets):
                     vectors.append(wavelet)
         return np.column_stack(vectors)
 
-
     @staticmethod
     def imatrix(m):
         """Return the inverse orthonormal Haar wavelet matrix (m by m)
@@ -70,12 +67,12 @@ class Haar(metaclass=Wavelets):
         """
         return Haar.matrix(m).T
 
-
     @staticmethod
     def squeeze(matrix):
         """Return a squeezed version of the wavelet imatrix (so that
         the number of columns equals the number of dilations of the Haar
-        wavelet)."""
+        wavelet).
+        """
         vectors = []
         length = len(matrix)
         accum = np.zeros(length)
