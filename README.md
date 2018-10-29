@@ -74,11 +74,13 @@ Therefore, if we were to transmit this signal of three sinusoids, it would
 be faster to send a small vector of the locations and values of the peaks
 in the frequency plot (which we have in the _coeffs_ variable) and
 reconstruct it using the Fourier basis once it has been received 
-than it is to send the much longer original signal.
+than it is to send the much longer original signal. We have performed
+lossless compression of the signal.
 
 Additionally, we could remove frequencies that we believe are unwanted and 
-reconstruct the signal without these components. Let's do that below for
-the frequencies that have values between 5 and 10, using numpy.
+reconstruct the signal without these components (lossy compression).
+Let's do that below for the frequencies that have values between 5 and
+10, using numpy.
 
 ```python
 import numpy as np
@@ -132,7 +134,6 @@ sp.plotting.plot(signal)
 Now perform the inverse 2-d Discete Fourier Transform on the image and
 plot the 2d array of Fourier coefficients.
 
-
 ```python
 coeffs = sp.bases.fourier.idft2(signal)
 sp.plotting.plot(coeffs)
@@ -146,10 +147,18 @@ horizontal direction at 2 and 5 and two in the vertical direction at 2
 and 5). As before, we have symmetry about the centre of the image along
 both axes due to the complex nature of the Fourier bases.
 
+If we were to transmit this image it would be faster to send the
+coefficients and their locations and reconstruct the image at the other
+end that it would be to send all the information. This is lossless
+image compression.
+
 Again, we can remove frequencies that we believe are noise but this time,
 instead of removing those that contribute least to the image (i.e. have
 small coefficients), we will remove the higher frequency components of the
-image (in both directions) that we know to exist. 
+image (in both directions) that we know to exist. This is lossy
+compression as we are reducing the complexity of the image but which
+cannot be restored by reconstruction of the image from the remaining
+coefficients. 
 
 ```python
 # Vertically
@@ -173,11 +182,6 @@ sp.plotting.plot(modified)
 ```
 
 ![alt text][fourier_signal_plot_2d_modified]
-
-
-#### Image Frequency Modulation
-
-To be completed...
 
 #### The Problem with the Fourier Basis
 
@@ -277,22 +281,64 @@ array([[ 0.5  ,  0.5  ,  0.707,  0.   ],
 ```
 
 Each column, except for column 0, is the single, complete square wave
-that has been dilated, translated or both dilated and translated. Column
-1 is the original square wave. Column 2 is a dilated (squashed) square
-wave located over the first half of the signal. Column 3 is a square
-wave that has the same amount of dilation as column 2 but has been
-translated to the second half of the signal.
+that has been dilated, translated or both. Column 1 is the original
+square wave. Column 2 is a dilated (squashed) square wave located over
+the first half of the signal. Column 3 is a square wave that has the
+same amount of dilation as column 2 but has been translated to the
+second half of the signal.
 
 The more the square wave is dilated (squashed) the more it represents a
 signal of a higher frequency. The translation represents where that
 signal of higher frequency acts. Again, like a piece of music, the
-dilation represents the vertical position of the note on the staff and
-the translation represents the where the note should be played in time -
+dilation represents the vertical position of the notes on the staff and
+the translation represents the where the notes should be played in time -
 the horizontal position. 
 
-##### A Simple Haar Wavelet Transformation
+Let's see some examples. First, we will create a flat, dc, signal that
+is 8 dimensions long and has values of 1. Then, we will perform the
+wavelet transform and look at the coefficients.
 
+```python
+signal = np.ones(8)
+coeffs = sp.bases.wavelets.idwt(signal, 'Haar')
+>>> coeffs
+array([2.828, 0.  , 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ])
+```
 
+What the coefficients are telling us is that it is only column 0 of the
+8x8 Haar matrix that is contributing to the signal, which is exactly
+what we would expect. Now, lets add a square wave onto the dc signal
+and perform the transform again.
+
+```python
+signal += np.array([  1,  1,  1,  1, -1, -1, -1, -1])
+coeffs = sp.bases.wavelets.idwt(signal, 'Haar')
+>>> coeffs
+array([2.828, 2.828, 0.   , 0.   , 0.   , 0.   , 0.   , 0.   ])
+```
+
+Now, the coefficients are telling us that our signal is made up of a dc
+signal and an undilated square wave across the whole length of the
+signal, which is exactly what we added to our first signal. Now, we can
+add the most dilated and most transformed Haar wavelet onto our signal
+and expect the last coefficient in the array to become non-zero.
+
+```python
+signal += np.array([  0,  0,  0,  0,  0,  0,  1, -1])
+coeffs = sp.bases.wavelets.idwt(signal, 'Haar')
+>>> coeffs
+array([2.828, 2.828, 0.   , 0.   , 0.   , 0.   , 0.   , 1.414])
+```
+
+Now let's take a random example, visualise the Haar transformation in a
+different way and remove 
+
+##### The Benefits of the Haar Wavelet Basis.
+
+```python
+square = sp.signals.square_signal(100)
+signal_plot = sp.plotting.plot(square, grid=True)
+```
 
 [fourier_signal_plot]: images/fourier_signal_plot.png "fourier_signal_plot"
 [fourier_frequency_plot]: images/fourier_frequency_plot.png "fourier_frequency_plot"
