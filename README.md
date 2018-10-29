@@ -260,7 +260,9 @@ this here.
 
 #### Haar 
 
-Haar wavelets are the simplest of the wavelets.
+Haar wavelets are the simplest of the wavelets. They consist of a
+single, complete square wave that is dilated (stretched) and translated
+(shifted) across the entire length of the signal.
 
 The orthonormal 4x4 Haar wavelet matrix is:
 
@@ -268,11 +270,29 @@ The orthonormal 4x4 Haar wavelet matrix is:
 haar_matrix = sp.bases.wavelets.Haar.matrix(4)
 
 >>> haar_matrix
-array([[ 0.5       ,  0.5       ,  0.70710678,  0.        ],
-       [ 0.5       ,  0.5       , -0.70710678,  0.        ],
-       [ 0.5       , -0.5       ,  0.        ,  0.70710678],
-       [ 0.5       , -0.5       ,  0.        , -0.70710678]])
+array([[ 0.5  ,  0.5  ,  0.707,  0.   ],
+       [ 0.5  ,  0.5  , -0.707,  0.   ],
+       [ 0.5  , -0.5  ,  0.   ,  0.707],
+       [ 0.5  , -0.5  ,  0.   , -0.707]])
 ```
+
+Each column, except for column 0, is the single, complete square wave
+that has been dilated, translated or both dilated and translated. Column
+1 is the original square wave. Column 2 is a dilated (squashed) square
+wave located over the first half of the signal. Column 3 is a square
+wave that has the same amount of dilation as column 2 but has been
+translated to the second half of the signal.
+
+The more the square wave is dilated (squashed) the more it represents a
+signal of a higher frequency. The translation represents where that
+signal of higher frequency acts. Again, like a piece of music, the
+dilation represents the vertical position of the note on the staff and
+the translation represents the where the note should be played in time -
+the horizontal position. 
+
+##### A Simple Haar Wavelet Transformation
+
+
 
 [fourier_signal_plot]: images/fourier_signal_plot.png "fourier_signal_plot"
 [fourier_frequency_plot]: images/fourier_frequency_plot.png "fourier_frequency_plot"
