@@ -330,8 +330,24 @@ coeffs = sp.bases.wavelets.idwt(signal, 'Haar')
 array([2.828, 2.828, 0.   , 0.   , 0.   , 0.   , 0.   , 1.414])
 ```
 
-Now let's take a random example, visualise the Haar transformation in a
-different way and remove 
+If we were to transmit this signal we would only need to transmit the 3
+non-zero coefficients and their positions i.e. which wavelet (dilation/
+translation combination) they correspond to and reconstuct it at the
+other end using the Discrete Haar Wavelet Transform. 
+
+Now let's take a random signal and visualise the contribution of each
+Haar wavelet to the total signal.  
+
+```python
+signal = np.random.randint(0, 10, size=8)
+>>> signal
+array([2, 1, 5, 5, 8, 5, 9, 3])
+
+# Plot the heatmap
+sp.plotting.plot_wavelet_heatmap(signal, 'Haar')
+```
+
+![alt text][haar_heatmap]
 
 ##### The Benefits of the Haar Wavelet Basis.
 
@@ -352,3 +368,4 @@ signal_plot = sp.plotting.plot(square, grid=True)
 [square_frequency_plot]: images/square_frequency_plot.png "square_frequency_plot"
 [square_frequency_plot_attenuated]: images/square_frequency_plot_attenuated.png "square_frequency_plot_attenuated"
 [square_signal_plot_modified]: images/square_signal_plot_modified.png "square_signal_plot_modified"
+[haar_heatmap]: images/haar_heatmap.png "haar_heatmap"
