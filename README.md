@@ -24,7 +24,7 @@ vectors can be reversed by the use of this transposed basis matrix.
 The two that I have so far considered are the Fourier basis and the Haar
 wavelet basis.
 
-### Fourier
+## Fourier
 
 The Fourier transform involves changing our signal into a linear
 combination of independent vectors that each represents a different
@@ -32,7 +32,7 @@ frequency of sinusoid that makes up the signal. The extent to which each
 frequency contributes to the overall signal is provided by the coefficient
 of each independent vector.
 
-#### A Simple Fourier Transformation
+### A Simple Fourier Transformation
 
 Let us create a signal of length 64 that is formed of 3 sinusoids
 of amplitudes, 3, 8 and 2, and frequencies, 17, 26 and 29.
@@ -100,7 +100,7 @@ signal_plot.send(modified)
 
 ![alt text][fourier_signal_plot_modified]
 
-#### Fourier Transformation of Images
+### Fourier Transformation of Images
 
 The Fourier transformation can be extended to signals of higher
 dimensions. If we consider images as our signal and perform the (inverse)
@@ -183,7 +183,7 @@ sp.plotting.plot(modified)
 
 ![alt text][fourier_signal_plot_2d_modified]
 
-#### The Problem with the Fourier Basis
+### The Problem with the Fourier Basis
 
 As discussed, the Fourier bases is one that is made up of independent
 vectors that represent different frequencies of sinusoids that sum
@@ -240,7 +240,7 @@ coefficients between -0.1 and 0.1 has produced a poor result on the
 square wave. We can do better for signals such as these by using better
 bases. These alternative bases are called wavelets!
 
-### Wavelets
+## Wavelets
 
 Unlike the Fourier basis that is made up of independent vectors that
 each represent a different frequency over the entire length of a signal,
@@ -262,7 +262,7 @@ depends on what you are trying to achieve (for example, signal
 compression) and the characteristics of your signal. We will discuss
 this here. 
 
-#### Haar 
+### Haar 
 
 Haar wavelets are the simplest of the wavelets. They consist of a
 single, complete square wave that is dilated (stretched) and translated
@@ -362,7 +362,7 @@ What can be seen is that the wavelets represented by columns 6, 7 and 9
 of the 8x8 Haar matrix contribute the least to the signal with values
 less than or equal to plus/minus 0.25. 
 
-##### The Benefits of the Haar Wavelet Basis.
+#### The Benefits of the Haar Wavelet Basis.
 
 At the end of the section on the Fourier Transform we created a square
 wave signal of length 100. We showed that if we transform this signal
@@ -390,9 +390,26 @@ sp.plotting.plot(coeffs, grid=True)
 
 What we can see is that there are only 6 independent vectors out of 128
 of the Haar basis that contribute to the square wave signal as opposed
-to all the independent vectors of the Fourier basis. This means only 6
-coefficients and their positions need to be transmitted for
+to all of the independent vectors of the Fourier basis. This means only
+6 coefficients and their positions need to be transmitted for
 recontruction. This is a huge lossless compression ratio.  
+
+## Conclusion
+
+Signals can be thought of as vectors lying within a vector space.
+Different bases that span this vector space can be used to break the
+signal up into linearly combining components. Depending on the basis
+chosen and the characteristics of signal being studied, this can lead to
+components of the basis that do not contribute at all to the signal. 
+
+This fact can then be used to reduce the amount of information needed to
+describe the signal and, in particular, to transmit it. If the receiver
+knows the basis used for the transformation, the reverse can be
+performed relatively easily.
+
+For smooth, gently changing signals, the Fourier Transformation is
+ideal. For sharp, rapidly changing signals, Wavelet Transformations are
+particularly good.
 
 [fourier_signal_plot]: images/fourier_signal_plot.png "fourier_signal_plot"
 [fourier_frequency_plot]: images/fourier_frequency_plot.png "fourier_frequency_plot"
