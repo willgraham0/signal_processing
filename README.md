@@ -238,6 +238,26 @@ bases. These alternative bases are called wavelets!
 
 ### Wavelets
 
+Unlike the Fourier basis that is made up of independent vectors that
+each represent a different frequency over the entire length of a signal,
+the wavelet basis is made up of independent vectors that each represent
+a frequency (or number of frequencies) over a certain period of the
+signal. An analogy can be made with written music; the horizontal length
+of the staff is the time over which a note may be played and the
+vertical position of the notes on the lines and spaces of the staff is
+the frequency at which the notes will be played.
+
+The wavelet transform involves changing our signal into a linear
+combination of independent wavelet vectors. The extent to which each
+vector contributes to the overall signal is provided by the coefficient
+of each independent vector.
+
+There are a number of different wavelet bases and the selection of one
+of them, including the selection of wavelets over the Fourier basis,
+depends on what you are trying to achieve, for example, signal
+compression, and the characteristics of your signal. We will discuss
+this here. 
+
 #### Haar 
 
 To be completed...
